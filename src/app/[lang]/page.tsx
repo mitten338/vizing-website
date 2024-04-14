@@ -70,7 +70,7 @@ export default function Home() {
       title: "Aggregate zk-proofs",
       src: attain2,
       srcSize: "w-[100%] lg:w-[465px] lg:h-[418px] right-[-75px] top-[-96px]",
-      context: `Aggregated zk-proofs effectively reduce the verification costs of zk-proofs in Layer2/Layer3.`,
+      context: `Aggregate zk-proofs integrate a variety of heterogeneous Layer2/Layer3 Zero-Knowledge Proof, effectively reducing their verification costs on Ethereum L1.`,
     },
   ];
 
@@ -235,7 +235,7 @@ export default function Home() {
 
       <div className={clsx("mb-24", splineLoaded && "lg:mt-[-400px]")}>
         <Spline
-          scene="https://prod.spline.design/YhHJ8WWEe6iKDWPx/scene.splinecode"
+          scene="/scene.splinecode"
           onLoad={() => {
             setSplineLoaded(true);
           }}

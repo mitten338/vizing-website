@@ -15,11 +15,11 @@ const languageMap = [
         alias: "en-us",
         text: "English",
     },
-    {
-        path: "zh",
-        alias: "zh-cn",
-        text: "中文",
-    },
+    // {
+    //     path: "zh",
+    //     alias: "zh-cn",
+    //     text: "中文",
+    // },
 ];
 export const languageArr = languageMap.map((item) => item.path);
 export const languageCookieName = "NEXT_LOCALE";
