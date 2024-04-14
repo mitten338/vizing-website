@@ -1,0 +1,22 @@
+<svg width="40.000000" height="40.000000" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip404_191">
+			<rect id="Frame 25" width="40.000000" height="40.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip404_191)">
+		<rect id="vuesax/bulk/scan-barcode" width="32.000000" height="32.000000" transform="translate(4.000000 4.000000)" fill="#FFFFFF" fill-opacity="0"/>
+		<path id="Vector" d="M29.74 7.2L26.25 7.2C24.26 7.2 23.2 8.24 23.2 10.25L23.2 13.74C23.2 15.75 24.26 16.8 26.25 16.8L29.74 16.8C31.73 16.8 32.8 15.75 32.8 13.74L32.8 10.25C32.8 8.24 31.73 7.2 29.74 7.2Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M13.74 23.2L10.25 23.2C8.26 23.2 7.19 24.24 7.19 26.25L7.19 29.74C7.19 31.75 8.26 32.8 10.25 32.8L13.74 32.8C15.73 32.8 16.79 31.75 16.79 29.74L16.79 26.25C16.79 24.24 15.73 23.2 13.74 23.2Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M29.74 23.2L26.25 23.2C24.26 23.2 23.2 24.24 23.2 26.25L23.2 29.74C23.2 31.75 24.26 32.8 26.25 32.8L29.74 32.8C31.73 32.8 32.8 31.75 32.8 29.74L32.8 26.25C32.8 24.24 31.73 23.2 29.74 23.2Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<g opacity="0.000000"/>
+		<path id="Subtract" d="M11.7817 7.2002L17.0181 7.2002C20.0029 7.2002 21.5999 8.771 21.5999 11.782L21.5999 17.0183C21.5999 20.0293 20.0029 21.6001 17.0181 21.6001L11.7817 21.6001C8.79712 21.6001 7.19995 20.0293 7.19995 17.0183L7.19995 11.782C7.19995 8.771 8.79712 7.2002 11.7817 7.2002ZM14.3999 11.2002C12.6326 11.2002 11.2 12.6328 11.2 14.4001C11.2 16.1675 12.6326 17.6001 14.3999 17.6001C16.1672 17.6001 17.5999 16.1675 17.5999 14.4001C17.5999 12.6328 16.1672 11.2002 14.3999 11.2002Z" clip-rule="evenodd" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<circle id="Ellipse 8" cx="20.000000" cy="31.200195" r="1.600000" fill="#FFFFFF" fill-opacity="1.000000"/>
+		<circle id="Ellipse 9" cx="20.000000" cy="24.800293" r="1.600000" fill="#FFFFFF" fill-opacity="1.000000"/>
+		<circle id="Ellipse 10" cx="24.800049" cy="20.000000" r="1.600000" fill="#FFFFFF" fill-opacity="1.000000"/>
+		<circle id="Ellipse 11" cx="31.200195" cy="20.000000" r="1.600000" fill="#FFFFFF" fill-opacity="1.000000"/>
+	</g>
+</svg>

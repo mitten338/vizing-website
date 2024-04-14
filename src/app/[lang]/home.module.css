@@ -1,0 +1,137 @@
+.swiper {
+  animation: swiper 16s infinite linear;
+}
+
+.swiper1 {
+  animation: swiper 30s infinite linear;
+}
+
+@keyframes swiper {
+  0% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.mask {
+  mask-image: linear-gradient(to right, #000, #000, transparent 0, #000 var(--mask-w), #000 calc(100% - var(--mask-w)), transparent);
+}
+
+.networkBg {
+  background-image: url("../../assets/images/network.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position-y: -69px;
+}
+
+.circle {
+  border-radius: 999px;
+  filter: blur(250px);
+  background: rgba(255, 72, 109, 0.7);
+  opacity: 0.4;
+  width: 37%;
+  height: 37vw;
+}
+
+.take-circle {
+  filter: blur(300px);
+  background: rgb(255, 89, 110);
+  opacity: 0.2;
+  width: 70vw;
+  height: 22vw;
+}
+
+.network-circle {
+  filter: blur(300px);
+  background: rgb(255, 89, 110);
+  opacity: 0.4;
+
+  width: 32vw;
+  height: 27vw;
+}
+
+.focus {
+  border-radius: 999px;
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2), inset 0px 1px 4px 1px rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0);
+}
+
+.bridge-button {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: linear-gradient(189.65deg, rgb(98, 52, 68) 7.273%, rgba(4, 1, 2, 0) 92.727%);
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.explore-button {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 12px 16px 12px 16px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.vizing-network {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background-color: rgba(242, 63, 93, 0.06);
+  background-image: url("../../assets/images/attain1.png");
+  background-size: 981px auto;
+  background-position-x: right;
+  background-position-x: 554px;
+  background-repeat: no-repeat;
+}
+
+.network-button {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 12px 16px;
+}
+
+.security-card {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(242, 63, 93, 0.06);
+}
+
+.buttons {
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(180.00deg, rgb(47, 41, 43), rgb(4, 1, 2) 100%);
+}
+
+.codeWrap {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(242, 63, 93, 0.06);
+}
+
+.code {
+  border-radius: 12px;
+  background: rgb(4, 1, 2);
+  padding: 20px;
+}
+
+.concat {
+  background-image: url("../../assets//images/concat.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.concat-logo {
+  box-sizing: border-box;
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(180.00deg, rgba(242, 63, 93, 0.3), rgba(4, 1, 2, 0.2) 120.475%);
+}
