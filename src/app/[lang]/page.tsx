@@ -294,7 +294,7 @@ export default function Home() {
         <div
           className={"font-[400] text-[#fff]/55 text-[20px] text-center mb-5"}
         >
-          Ecosystem
+          Backed By
         </div>
         <div
           className={clsx(
@@ -316,28 +316,30 @@ export default function Home() {
       <div className="text-[36px] lg:text-5xl font-[500] text-center mb-14">
         Endgame of omni-chain environment
       </div>
-      <BoxCenter
-        className={clsx(
-          "mb-[16px] py-[72px] px-[44px] relative overflow-hidden",
-          styles["vizing-network"]
-        )}
-      >
+      <BoxCenter>
         <div
           className={clsx(
-            styles["network-circle"],
-            "absolute top-[-231px] left-[-90px]"
+            "mb-[16px] py-[72px] px-[44px] relative overflow-hidden",
+            styles["vizing-network"]
           )}
-        ></div>
-        <div className="text-[36px] mb-6">Vizing Station</div>
-        <div className="max-w-[601px] text-[20px] text-[#fff]/60 mb-11">
-          Vizing Station is a Type-1 zkEVM operating environment based on zk
-          technology, serving as the access point for full-chain Dapps and the
-          aggregation entry point for zk-proofs in the Vizing omni-chain
-          environment.
-        </div>
-        <div className="flex gap-[4px] lg:gap-[18px]">
-          <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('bridge')}>Bridge to Vizing</div>
-          <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('docs')}>Build On Vizing</div>
+        >
+          <div
+            className={clsx(
+              styles["network-circle"],
+              "absolute top-[-231px] left-[-90px]"
+            )}
+          ></div>
+          <div className="text-[36px] mb-6">Vizing Station</div>
+          <div className="max-w-[601px] text-[20px] text-[#fff]/60 mb-11">
+            Vizing Station is a Type-1 zkEVM operating environment based on zk
+            technology, serving as the access point for full-chain Dapps and the
+            aggregation entry point for zk-proofs in the Vizing omni-chain
+            environment.
+          </div>
+          <div className="flex gap-[4px] lg:gap-[18px]">
+            <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('bridge')}>Bridge to Vizing</div>
+            <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('docs')}>Build On Vizing</div>
+          </div>
         </div>
       </BoxCenter>
       <BoxCenter className={"mb-14"}>
