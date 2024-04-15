@@ -63,13 +63,15 @@ export default function Home() {
     {
       title: "Omni Account Abstraction",
       src: attain3,
-      srcSize: "w-[100%] lg:w-[540px] lg:h-[558px] right-[-49px] top-[-181px]",
+      srcSize:
+        "absolute w-[45vmin] lg:w-[540px] lg:h-[558px] right-[-49px] top-[-10vmin] lg:top-[-181px]",
       context: `Omni account abstraction is fully compatible with the ERC4337 protocol. It possesses the ability to seamlessly roam between various Layer2 solutions, effectively eliminating the sense of fragmentation among different Layer2s.`,
     },
     {
       title: "Aggregate zk-proofs",
       src: attain2,
-      srcSize: "w-[100%] lg:w-[465px] lg:h-[418px] right-[-75px] top-[-96px]",
+      srcSize:
+        "absolute w-[45vmin] lg:w-[465px] lg:h-[418px] right-[-75px] top-[-10vmin] top-[-96px]",
       context: `Aggregate zk-proofs integrate a variety of heterogeneous Layer2/Layer3 Zero-Knowledge Proof, effectively reducing their verification costs on Ethereum L1.`,
     },
   ];
@@ -203,7 +205,7 @@ export default function Home() {
         />
         <div
           className={clsx(
-            "py-[8px] px-[24px] text-[14px] font-[400] flex-center mb-4",
+            "py-[8px] px-[10px] lg:px-[24px] text-[14px] font-[400] flex-center mb-4",
             "mt-[-400px]",
             styles.focus
           )}
@@ -226,21 +228,34 @@ export default function Home() {
           ecosystem roaming experience!
         </div>
         <div className={"max-w-[363px] flex gap-1"}>
-          <div className={styles["bridge-button"]} onClick={() => openExternalURLs('bridge')}>Bridge to Vizing</div>
-          <div className={styles["explore-button"]} onClick={() => openExternalURLs('explorer')}>Explorer</div>
+          <div
+            className={styles["bridge-button"]}
+            onClick={() => openExternalURLs("bridge")}
+          >
+            Bridge to Vizing
+          </div>
+          <div
+            className={styles["explore-button"]}
+            onClick={() => openExternalURLs("explorer")}
+          >
+            Explorer
+          </div>
         </div>
       </div>
 
       <div className={clsx("mb-24", splineLoaded && "lg:mt-[-400px]")}>
         <Spline
           scene="/scene.splinecode"
-          onLoad={() => {
+          onStart={() => {
             setSplineLoaded(true);
           }}
         ></Spline>
       </div>
       <BoxCenter
-        className={"text-[22px] lg:mt-0 lg:text-[44px] text-[#fff] mb-4"}
+        className={clsx(
+          "text-[22px] lg:text-[44px] text-[#fff] mb-4",
+          splineLoaded ? "lg:mt-0" : "lg:mt-[400px]"
+        )}
       >
         What&apos;s Vizing
       </BoxCenter>
@@ -255,8 +270,8 @@ export default function Home() {
           Vizing is named after mathematician Vadim Georgievich Vizing, who
           contributed to graph theory with Vizing&apos;s theorem. Graph theory
           forms the foundation of zero-knowledge proofs. Just as Vizing&apos;s
-          theorem revolutionized graph theory, our vision is to revolutionized the
-          roaming experience within the Ethereum ecosystem.
+          theorem revolutionized graph theory, our vision is to revolutionized
+          the roaming experience within the Ethereum ecosystem.
         </div>
       </BoxCenter>
       <BoxCenter className="mb-[120px]">
@@ -276,11 +291,11 @@ export default function Home() {
             "lg:bg-cover"
           )}
         >
-          <div className="max-w-[442px] text-[48px] font-[500] text-center">
+          <div className="max-w-[442px] text-[36px] lg:text-[48px] font-[500] text-center">
             Operational Model of
             <span className="text-[#E43B57]"> Vizing</span>
           </div>
-          <div className="text-[18px] text-center text-[#fff]/60">
+          <div className="text-[16px] lg:text-[18px] text-center text-[#fff]/60">
             Based on Ethereum&apos;s security model, data generated in
             Vizing&apos;s omni-chain environment will ultimately be compressed
             to L1 using zk technology for verification and arbitration.
@@ -313,7 +328,7 @@ export default function Home() {
           </div>
         </div>
       </BoxCenter>
-      <div className="text-[36px] lg:text-5xl font-[500] text-center mb-14">
+      <div className="text-[28px] lg:text-[36px] lg:text-5xl font-[500] text-center mb-8 lg:mb-14">
         Endgame of omni-chain environment
       </div>
       <BoxCenter>
@@ -329,16 +344,26 @@ export default function Home() {
               "absolute top-[-231px] left-[-90px]"
             )}
           ></div>
-          <div className="text-[36px] mb-6">Vizing Station</div>
-          <div className="max-w-[601px] text-[20px] text-[#fff]/60 mb-11">
+          <div className="text-[28px] lg:text-[36px] mb-6">Vizing Station</div>
+          <div className="max-w-[601px] text-[16px] lg:text-[20px] text-[#fff]/60 mb-11">
             Vizing Station is a Type-1 zkEVM operating environment based on zk
             technology, serving as the access point for full-chain Dapps and the
             aggregation entry point for zk-proofs in the Vizing omni-chain
             environment.
           </div>
           <div className="flex gap-[4px] lg:gap-[18px]">
-            <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('bridge')}>Bridge to Vizing</div>
-            <div className={clsx(styles["network-button"])} onClick={() => openExternalURLs('docs')}>Build On Vizing</div>
+            <div
+              className={clsx(styles["network-button"])}
+              onClick={() => openExternalURLs("bridge")}
+            >
+              Bridge to Vizing
+            </div>
+            <div
+              className={clsx(styles["network-button"])}
+              onClick={() => openExternalURLs("docs")}
+            >
+              Build On Vizing
+            </div>
           </div>
         </div>
       </BoxCenter>
@@ -355,12 +380,12 @@ export default function Home() {
               <Image
                 src={item.src}
                 alt=""
-                className={clsx("absolute", item.srcSize)}
+                className={clsx(item.srcSize)}
               ></Image>
-              <div className="mt-[254px] lg:max-w-[245px] font-[500] text-[36px]">
+              <div className="mt-[127px] lg:mt-[254px] lg:max-w-[245px] max-w-[190px] font-[500] text-[28px] lg:text-[36px]">
                 {item.title}
               </div>
-              <div className="mt-6 text-[#fff]/60 text-[20px] max-w-[380px]">
+              <div className="mt-6 text-[#fff]/60 text-[16px] lg:text-[20px] max-w-[380px]">
                 {item.context}
               </div>
             </div>
@@ -369,10 +394,10 @@ export default function Home() {
       </BoxCenter>
       <BoxCenter className="flex mb-[125px] flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col lg:max-w-[560px]">
-          <div className="text-[36px] font-[500]">
+          <div className="text-[28px] lg:text-[36px] font-[500]">
             How to onboard onto the Vizing omni-chain environment
           </div>
-          <div className="mt-[24px] text-[20px] font-[400] text-[#fff]/60">
+          <div className="mt-[24px] text-[16px] lg:text-[20px] font-[400] text-[#fff]/60">
             Omni-chain Dapps can swiftly access omni-chain communication
             capabilities by simply integrating Vizing&apos;s smart contract SDK.
           </div>
@@ -381,7 +406,7 @@ export default function Home() {
               "mt-[16px] lg:mt-[44px] py-[8px] px-[32px] w-max mb-4 lg:mb-0",
               styles.buttons
             )}
-            onClick={() => openExternalURLs('docs')}
+            onClick={() => openExternalURLs("docs")}
           >
             Build Docs
           </div>
@@ -437,33 +462,32 @@ contract MyOmniChainDApp is VizingOmni {
         <div
           className={clsx(
             styles.concat,
-            "py-[64px] lg:py-[128px] pb-[180px] lg:pb-[272px] px-[19px] lg:px-[38px] max-w-[100%] lg:max-w-[632px]"
+            "lg:py-[128px] lg:pb-[272px] px-[19px] lg:px-[38px] lg:max-w-[632px] w-[87vw] lg:h-auto lg:mb-[94px] h-[87vw] relative"
           )}
         >
-          <div className="text-[24px] text-center lg:text-[48px] font-[500] mb-[88px] lg:mb-[88px]">
+          <div className="text-[24px] text-center lg:text-[48px] font-[500] lg:mb-[88px] mt-[16vw] lg:mt-0">
             Social Media Integration
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center lg:relative absolute top-[50%] w-full justify-between lg:translate-y-0 translate-y-[-50%] left-0">
             {[
               {
                 url: discord,
-                style: "p-2 lg:p-4 lg:ml-[-80px]",
+                style: "p-[2vw] lg:p-4 lg:ml-[-80px] ml-[-4vw]",
                 jumpLink: externalURLs.discord,
               },
               {
                 url: twitter,
-                style:
-                  "p-3 lg:p-6 ml-[24px] lg:ml-[48px] mr-[98px] lg:mr-[296px]",
+                style: "p-[3vw] lg:p-6 lg:ml-[48px] mr-[20vw] lg:mr-[296px]",
                 jumpLink: externalURLs.twitter,
               },
               {
                 url: Frame,
-                style: "p-3 lg:p-6 mr-[24px] lg:mr-[48px]",
+                style: "p-[3vw] lg:p-6 lg:mr-[48px]",
                 jumpLink: externalURLs.github,
               },
               {
                 url: Medium,
-                style: "p-2 lg:p-4",
+                style: "p-[2vw] lg:p-4 mr-[-4vw] lg:mr-0",
                 jumpLink: externalURLs.medium,
               },
             ].map(({ style, url: Url, jumpLink }, index) => {
