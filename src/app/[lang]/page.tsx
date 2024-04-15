@@ -27,7 +27,7 @@ import { type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import Spline from "@splinetool/react-spline";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { externalURLs, openExternalURLs } from "@/utils/constant";
 
 export default function Home() {
@@ -196,17 +196,15 @@ export default function Home() {
             "absolute left-[50%] top-[-124px] translate-x-[-50%]"
           )}
         ></div>
-        {init && (
-          <Particles
-            className="w-full h-[500px]"
-            id="tsparticles"
-            options={options}
-          />
-        )}
+        <Particles
+          className="w-full h-[500px]"
+          id="tsparticles"
+          options={options}
+        />
         <div
           className={clsx(
             "py-[8px] px-[24px] text-[14px] font-[400] flex-center mb-4",
-            init && "mt-[-400px]",
+            "mt-[-400px]",
             styles.focus
           )}
         >
@@ -395,7 +393,7 @@ export default function Home() {
           <div
             className={clsx("p-5 h-full text-[14px] font-[400]", styles.code)}
           >
-            <SyntaxHighlighter language="solidity" style={atomDark}>
+            <SyntaxHighlighter language="solidity" style={vscDarkPlus}>
               {`// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.23;
 
