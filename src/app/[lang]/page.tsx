@@ -29,6 +29,7 @@ import Spline from "@splinetool/react-spline";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { externalURLs, openExternalURLs } from "@/utils/constant";
+import { Application } from "@splinetool/runtime";
 
 export default function Home() {
   const arr2 = [
@@ -125,6 +126,7 @@ export default function Home() {
         zIndex: 0,
       },
       background: {
+        opacity: 0,
         color: {
           value: "#000",
           opacity: 0,
@@ -253,6 +255,11 @@ export default function Home() {
       <div className={clsx("mb-24", splineStyle)}>
         <Spline
           scene="/scene.splinecode"
+          onLoad={(e: Application) => {
+            if (e?.data?.schema) {
+              setSplineLoaded(true);
+            }
+          }}
           onStart={() => {
             setSplineLoaded(true);
           }}
