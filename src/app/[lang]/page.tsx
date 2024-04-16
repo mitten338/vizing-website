@@ -103,6 +103,13 @@ export default function Home() {
   const [init, setInit] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
 
+  const splineStyle = useMemo(() => {
+    return splineLoaded ? "lg:mt-[-400px]" : "";
+  }, [splineLoaded]);
+
+  const whatVizingStyle = useMemo(() => {
+    return splineLoaded ? "lg:mt-0" : "lg:mt-[400px]";
+  }, [splineLoaded]);
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -243,7 +250,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={clsx("mb-24", splineLoaded && "lg:mt-[-400px]")}>
+      <div className={clsx("mb-24", splineStyle)}>
         <Spline
           scene="/scene.splinecode"
           onStart={() => {
@@ -254,7 +261,7 @@ export default function Home() {
       <BoxCenter
         className={clsx(
           "text-[22px] lg:text-[44px] text-[#fff] mb-4",
-          splineLoaded ? "lg:mt-0" : "lg:mt-[400px]"
+          whatVizingStyle
         )}
       >
         What&apos;s Vizing
