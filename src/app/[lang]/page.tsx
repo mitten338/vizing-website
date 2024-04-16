@@ -105,11 +105,11 @@ export default function Home() {
   const [splineLoaded, setSplineLoaded] = useState(false);
 
   const splineStyle = useMemo(() => {
-    return splineLoaded ? "lg:mt-[-400px]" : "";
+    return splineLoaded ? "lg:mt-[-400px] mt-[-80px]" : "";
   }, [splineLoaded]);
 
   const whatVizingStyle = useMemo(() => {
-    return splineLoaded ? "lg:mt-0" : "lg:mt-[400px]";
+    return splineLoaded ? "lg:mt-0" : "lg:mt-[400px] mt-[80px]";
   }, [splineLoaded]);
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -252,7 +252,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={clsx("mb-24", splineStyle)}>
+      <div className={clsx("lg:mb-24 mb-[36px]", splineStyle)}>
         <Spline
           scene="/scene.splinecode"
           onLoad={(e: Application) => {

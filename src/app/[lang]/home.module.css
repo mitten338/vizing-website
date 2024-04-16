@@ -3,7 +3,7 @@
 }
 
 .swiper1 {
-  animation: swiper 30s infinite linear;
+  animation: swiper 60s infinite ease;
 }
 
 @keyframes swiper {
