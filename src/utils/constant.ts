@@ -28,7 +28,7 @@ export const fallbackLng = "en";
 
 export const externalURLs = {
     twitter: 'https://x.com/Vizing_L2',
-    discord: 'https://discord.com/invite/jRJKK8avGM',
+    discord: 'https://discord.com/invite/FbztTBvnBT',
     medium: 'https://medium.com/@Vizing_L2',
     github: 'https://github.com/Orbiter-Vizing',
 
