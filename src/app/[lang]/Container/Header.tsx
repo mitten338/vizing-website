@@ -1,25 +1,42 @@
 'use client'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/assets/images/footerLogo.svg";
 import { cn } from "@/lib/utils";
+import styles from './style.module.css'
 import { useTranslation } from "@/hooks/i18n/server/useTranslation";
 import headerX from "images/headerX.svg";
 import headerMedium from "images/headerMedium.svg";
 import headerDisc from "images/headerDisc.svg";
 import { externalURLs } from "@/utils/constant";
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 
 function openLink(url: string | undefined, currentSitePath?: string) {
   window.open(url)
 }
 
-const Header = async ({ lang }: ConLangParams) => {
-  const { t } = await useTranslation(lang);
+const Header = ({ lang }: ConLangParams) => {
+  const pathname = usePathname()
+  const [t, setT] = useState<Function | null>(null);
+  useEffect(() => {
+    const LoadTranslation = async () => {
+      const { t } = await useTranslation(lang);
+      setT(() => t);
+    };
+    LoadTranslation();
+  }, [lang]);
+
+  if (!t) {
+    return null;
+  }
+
   const arr = [
     {
       text: t("Home"),
-      jumpLink: '/en'
+      jumpLink: '/en',
+      isCurrentSite: true
     },
     {
       text: t("Explorer"),
@@ -30,8 +47,9 @@ const Header = async ({ lang }: ConLangParams) => {
       jumpLink: externalURLs.docs
     },
     {
-      text: t("Ecosystem (coming soon)"),
-      jumpLink: '/en/ecosystem'
+      text: t("Ecosystem"),
+      jumpLink: '/en/ecosystem',
+      isCurrentSite: true
     },
   ];
   const iconList = [
@@ -58,15 +76,16 @@ const Header = async ({ lang }: ConLangParams) => {
         }
       >
         {arr.map((item, index) => (
-          <li
-            key={index}
-            className={cn(
-              arr.length - 1 === index ? "text-[12px] text-[#fff]/40" : "cursor-pointer"
-            )}
-            onClick={() => openLink(item.jumpLink)}
-          >
-            {item.text}
-          </li>
+            <li
+              key={index}
+              className={cn("relative cursor-pointer", pathname === item.jumpLink ? styles.textSelected : '')}
+            >
+              {
+                item.isCurrentSite ?
+                  <Link href={item.jumpLink}>{item.text}</Link> :
+                  <span onClick={() => openLink(item.jumpLink)}>{item.text}</span>
+              }
+            </li>
         ))}
       </ul>
       <div className="flex">
