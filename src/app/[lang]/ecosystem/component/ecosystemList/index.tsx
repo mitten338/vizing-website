@@ -7,6 +7,8 @@ import { ecosystemList, EcosystemItem } from "./data"
 
 type EcosystemListKeys = keyof typeof ecosystemList;
 
+const ecosystemContentAreaScrollHeight = 316;
+
 export default function EcosystemList() {
   const initialData: EcosystemItem[] = Object.values(ecosystemList).flatMap(category => category.list);
 
@@ -27,10 +29,12 @@ export default function EcosystemList() {
   }
 
   const smoothScroll = () => {
-    const targetElement = document.getElementById('target')
-    targetElement && targetElement.scrollIntoView({
-      behavior: 'smooth'
-    });
+    if(window.scrollY > ecosystemContentAreaScrollHeight) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 
   return (

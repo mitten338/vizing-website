@@ -17,6 +17,7 @@ export type EcosystemItem = {
   tagName: string;
   logo: StaticImageData;
   banner: StaticImageData;
+  homepage: string;
   links: Link[];
 };
 
@@ -34,11 +35,12 @@ export const ecosystemList:EcosystemList = {
     categoryName: 'Defi',
     list: [
       {
-        name: 'Velodrome',
+        name: 'Likwid',
         introduction: 'Velodrome is an AMM modeled on Solidly and designed to be a public good that provides deep liquidity…',
         tagName: 'DEFI',
         logo: alienLogo,
         banner: alienBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -61,6 +63,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'NFT',
         logo: alienLogo,
         banner: alienBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -83,6 +86,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -100,6 +104,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -111,14 +116,13 @@ export const ecosystemList:EcosystemList = {
           },
         ]
       },
-      // dfjkdjd
-      // dfdfdf
       {
         name: 'Orbiter Finance3',
-        introduction: 'Orbiter Finance is a ZK-tech-based instant omni rollup on Ethereum, delivering secure, efficient, and decent...',
+        introduction: 'Orbiter Finance is a ZK-tech-based instant omni rollup on Ethereum, delivering secure, efficient, and decent dfdf dfdf...',
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -136,6 +140,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -153,6 +158,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,
@@ -170,6 +176,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Bridge',
         logo: vizingLogo,
         banner: vizingBanner,
+        homepage: 'https://likwid.meme/',
         links: [
           {
             linkLogo: linkX,

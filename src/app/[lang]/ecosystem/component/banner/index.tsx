@@ -5,7 +5,8 @@ import React from "react";
 
 export default function Banner() {
   const handleButtonClick = () => {
-    console.log('add your app')
+    const vizingEcosystemPartnerApplication = 'https://forms.gle/MS6h2JUUS7PXuKsq8';
+    window.open(vizingEcosystemPartnerApplication)
   }
 
   return (
@@ -22,12 +23,12 @@ export default function Banner() {
       </div>
       <button
         className={clsx(
-          "absolute right-[0px] bottom-[44px] h-[48px] w-[151px] rounded-[24px]",
+          "absolute right-[0px] bottom-[44px] py-[8px] px-[24px] rounded-[24px] text-[16px]",
           styles.addButton
         )}
         onClick={handleButtonClick}
       >
-        add your app
+        Submit Your Project
       </button>
     </div>
   );
