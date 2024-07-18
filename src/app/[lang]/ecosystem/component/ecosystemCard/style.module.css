@@ -1,0 +1,8 @@
+.cardWrap {
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 16px;
+}
+
+.tag {
+  background: #E43B57;
+}

@@ -9,7 +9,8 @@ import headerMedium from "images/headerMedium.svg";
 import headerDisc from "images/headerDisc.svg";
 import { externalURLs } from "@/utils/constant";
 
-function openLink(url: string | undefined) {
+
+function openLink(url: string | undefined, currentSitePath?: string) {
   window.open(url)
 }
 
@@ -17,8 +18,8 @@ const Header = async ({ lang }: ConLangParams) => {
   const { t } = await useTranslation(lang);
   const arr = [
     {
-      text: t("Bridge"),
-      jumpLink: externalURLs.bridge
+      text: t("Home"),
+      jumpLink: '/en'
     },
     {
       text: t("Explorer"),
@@ -30,6 +31,7 @@ const Header = async ({ lang }: ConLangParams) => {
     },
     {
       text: t("Ecosystem (coming soon)"),
+      jumpLink: '/en/ecosystem'
     },
   ];
   const iconList = [
@@ -46,12 +48,13 @@ const Header = async ({ lang }: ConLangParams) => {
       jumpLink: externalURLs.medium
     },
   ];
+
   return (
     <header className={"h-20 flex items-center justify-between header-center relative z-[999999]"}>
       <Logo className={"h-10 w-auto cursor-pointer"} />
       <ul
         className={
-          "text-[16px] gap-16 font-[400] text-[#fff]/80 hidden lg:flex items-center"
+          "text-[16px] gap-16 font-[400] text-[#fff]/80 lg:flex flex flex-row items-center"
         }
       >
         {arr.map((item, index) => (

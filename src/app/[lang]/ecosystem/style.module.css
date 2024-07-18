@@ -1,0 +1,26 @@
+.circle {
+  border-radius: 999px;
+  filter: blur(250px);
+  background: rgba(255, 72, 109, 0.7);
+  opacity: 0.4;
+  width: 37%;
+  height: 37vw;
+}
+
+.take-circle {
+  filter: blur(300px);
+  background: rgb(255, 89, 110);
+  opacity: 0.2;
+  width: 70vw;
+  height: 22vw;
+}
+
+.network-circle {
+  filter: blur(300px);
+  background: rgb(255, 89, 110);
+  opacity: 0.4;
+}
+
+.ecosystemWrap {
+  margin: 0 auto;
+}

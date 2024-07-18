@@ -1,0 +1,8 @@
+.selectedItem {
+  color: #fff;
+}
+
+.sidebarWrap {
+  position: sticky;
+  top: 1em;
+}
