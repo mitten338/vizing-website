@@ -12,18 +12,17 @@ export default function Banner() {
   return (
     <div
       className={clsx(
-        "relative pt-[64px] pb-[44px] h-[244px] mb-[32px]",
+        "relative pt-[64px] pb-[44px] mb-[32px]",
         styles.bannerWrap
       )}
     >
       <h1 className="text-[48px] leading-[56px] font-[500] mb-[24px]">Ecosystem</h1>
       <div className="text-[16px] font-[400] text-[#fff]/60">
-        <p>Enjoy all your favorite dapps from DeFi, NFT&apos;s Gaming, to DAOs and join the web3</p>
-        <p>revolution. To submit your dapp, join Linea&apos;s Discord and go to #submit-project channel.</p>
+        <p>Step into the Vizing ecosystem and embark on a unique journey of discovery and exploration.</p>
       </div>
       <button
         className={clsx(
-          "absolute right-[0px] bottom-[44px] py-[8px] px-[24px] rounded-[24px] text-[16px]",
+          "absolute right-[0px] bottom-[44px] py-[16px] px-[30px] rounded-[30px] text-[20px]",
           styles.addButton
         )}
         onClick={handleButtonClick}

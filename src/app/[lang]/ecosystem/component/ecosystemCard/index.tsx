@@ -10,15 +10,24 @@ type EcosystemCardProps = {
 };
 
 export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
-  const cardInfo = props.cardInfo
+  const cardInfo = props.cardInfo;
+  const socialLinkId = 'social-link';
+
+  const handleCardClick = (e:React.MouseEvent<HTMLDivElement>, link:string) => {
+    const elementId = (e.target as HTMLElement).id
+    if(elementId !== socialLinkId) {
+      window.open(link);
+    }
+  }
 
   return (
-    <a href={cardInfo.homepage} target="_blank">
-      <div
+    <div
         className={clsx(
           "cardWrap w-[320px] h-[264px] overflow-hidden",
           styles.cardWrap
-        )}>
+        )}
+        onClick={(e) => handleCardClick(e, cardInfo.homepage)}
+    >
         <div className="banner relative">
           <span
             className={clsx(
@@ -33,11 +42,11 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
             <Image src={cardInfo.logo} alt={cardInfo.name}></Image>
           </div>
         </div>
-        <div className="links flex flex-row justify-end">
+        <div className="links flex flex-row justify-end pr-[13px]">
           {cardInfo.links.map((link) => {
             return (
-              <a key={link.link} href={link.link}>
-                <Image className="h-[32px] w-[32px] rounded-full" src={link.linkLogo} alt={cardInfo.name}></Image>
+              <a key={link.link} href={link.link} target="_blank">
+                <Image id={socialLinkId} className="h-[32px] w-[32px] rounded-full" src={link.linkLogo} alt={cardInfo.name}></Image>
               </a>
             )
           })}
@@ -54,6 +63,5 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
           </div>
         </div>
       </div>
-    </a>
   );
 };
