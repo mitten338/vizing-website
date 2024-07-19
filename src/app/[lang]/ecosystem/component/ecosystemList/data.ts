@@ -215,7 +215,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Wallet',
         logo: logoGateio,
         banner: bannerGateio,
-        homepage: 'https://www.gate.io/zh/web3',
+        homepage: 'https://www.gate.io/web3',
         links: [
           {
             linkLogo: linkX,
@@ -290,7 +290,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Infra',
         logo: logoL2Scan,
         banner: bannerL2Scan,
-        homepage: 'https://www.alchemy.com/',
+        homepage: 'https://scroll.l2scan.co/',
         links: [
           {
             linkLogo: linkX,
