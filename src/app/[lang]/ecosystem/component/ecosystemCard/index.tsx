@@ -52,7 +52,7 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
                       styles.linkLogo
                     )}
                 >
-                  <link.linkLogo />
+                  <link.linkLogo id={socialLinkId}/>
                 </span>
               </a>
             )
