@@ -31,12 +31,12 @@ import bannerGateio from 'images/ecosystem/banner_gateio.png';
 import bannerXMint from 'images/ecosystem/banner_xmint.png';
 import bannerOxkWallet from 'images/ecosystem/banner_okx_wallet.png'; 
 // social link logo assets
-import linkX from "images/ecosystem/twitter.png";
+import linkX from "images/headerX.svg";
 
 import { StaticImageData } from 'next/image';
 
 type Link = {
-  linkLogo: StaticImageData;
+  linkLogo: any;
   link: string;
 };
 
@@ -80,12 +80,12 @@ export const ecosystemList:EcosystemList = {
     ]
   },
   defi: {
-    categoryName: 'Defi',
+    categoryName: 'DeFi',
     list: [
       {
         name: 'Likwid',
         introduction: 'An omnichain meme platform with custom price curves',
-        tagName: 'DEFI',
+        tagName: 'DeFi',
         logo: logoLikwid,
         banner: bannerLikwid,
         homepage: 'https://likwid.meme/',
@@ -99,7 +99,7 @@ export const ecosystemList:EcosystemList = {
       {
         name: 'Color Protocol',
         introduction: 'MemecoinFi Protocol: convert your memecoins from ERC20 standard into BC-404.',
-        tagName: 'DEFI',
+        tagName: 'DeFi',
         logo: logoColorProtocol,
         banner: bannerColorProtocol,
         homepage: 'https://www.colorprotocol.com/',
@@ -113,7 +113,7 @@ export const ecosystemList:EcosystemList = {
       {
         name: 'Pink',
         introduction: 'The First Fair Launch Meme on Taiko',
-        tagName: 'DEFI',
+        tagName: 'DeFi',
         logo: logoPink,
         banner: bannerPink,
         homepage: 'https://www.pinketh.xyz/',
@@ -132,7 +132,7 @@ export const ecosystemList:EcosystemList = {
       {
         name: 'Aylab',
         introduction: 'A platform empowering web3 projects with decentralised user acquisition',
-        tagName: 'Gamefi',
+        tagName: 'Gaming',
         logo: logoAylab,
         banner: bannerAylab,
         homepage: 'https://aylab.io/',
@@ -146,7 +146,7 @@ export const ecosystemList:EcosystemList = {
       {
         name: '0xAstra',
         introduction: 'The Omnichain SLG Game. Mine, Craft, Build, and Battle in the wild Astra  Season 1 is Ongoing',
-        tagName: 'Gamefi',
+        tagName: 'Gaming',
         logo: logo0xastra,
         banner: banner0xastra,
         homepage: 'https://0xastra.xyz/',
@@ -160,7 +160,7 @@ export const ecosystemList:EcosystemList = {
       {
         name: 'bullishs',
         introduction: 'The First Seamless Transaction Tech in Omni Layer2 Cross-Rollup Game. Play to earn Airdrop.',
-        tagName: 'Gamefi',
+        tagName: 'Gaming',
         logo: logoBullishs,
         banner: bannerBullishs,
         homepage: 'https://www.bullishs.io/',
@@ -290,7 +290,7 @@ export const ecosystemList:EcosystemList = {
         tagName: 'Infra',
         logo: logoL2Scan,
         banner: bannerL2Scan,
-        homepage: 'https://scroll.l2scan.co/',
+        homepage: 'https://vizing.l2scan.co/',
         links: [
           {
             linkLogo: linkX,

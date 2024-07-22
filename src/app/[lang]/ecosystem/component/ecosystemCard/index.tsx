@@ -46,7 +46,14 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
           {cardInfo.links.map((link) => {
             return (
               <a key={link.link} href={link.link} target="_blank">
-                <Image id={socialLinkId} className="h-[32px] w-[32px] rounded-full" src={link.linkLogo} alt={cardInfo.name}></Image>
+                <span
+                    className={clsx(
+                      "h-[32px] w-[32px] mt-[4px] inline-flex items-center justify-center rounded-full",
+                      styles.linkLogo
+                    )}
+                >
+                  <link.linkLogo />
+                </span>
               </a>
             )
           })}
