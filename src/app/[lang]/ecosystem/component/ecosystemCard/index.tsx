@@ -13,13 +13,14 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
   const cardInfo = props.cardInfo;
   const socialLinkId = 'social-link';
 
-  const handleCardClick = (e:React.MouseEvent<HTMLDivElement>, link:string) => {
-    const elementId = (e.target as HTMLElement).id
-    if(elementId !== socialLinkId) {
-      window.open(link);
-    }
+  const handleCardClick = (e:React.MouseEvent<HTMLDivElement>, homepageLink:string) => {
+    window.open(homepageLink);
   }
-
+  
+  const handleXlinkClick = (e:React.MouseEvent<HTMLSpanElement>, Xlink:string) => {
+    window.open(Xlink);
+    e.stopPropagation()
+  }
   return (
     <div
         className={clsx(
@@ -45,8 +46,7 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
         <div className="links flex flex-row justify-end pr-[13px]">
           {cardInfo.links.map((link) => {
             return (
-              <a key={link.link} href={link.link} target="_blank">
-                <span
+                <span key={link.link} onClick={(e) => handleXlinkClick(e, link.link)}
                     className={clsx(
                       "h-[32px] w-[32px] mt-[4px] inline-flex items-center justify-center rounded-full",
                       styles.linkLogo
@@ -54,7 +54,6 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
                 >
                   <link.linkLogo id={socialLinkId}/>
                 </span>
-              </a>
             )
           })}
         </div>
