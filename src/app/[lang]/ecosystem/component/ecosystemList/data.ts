@@ -14,6 +14,8 @@ import logoAylab from 'images/ecosystem/logo_aylab.png';
 import logoGateio from 'images/ecosystem/logo_gateio.png';
 import logoXMint from 'images/ecosystem/logo_xmint.png';
 import logoOxkWallet from 'images/ecosystem/logo_okx_wallet.png';
+import logoXenoBunny from 'images/ecosystem/logo_xeno_bunny.png';
+import logoCoNFT from 'images/ecosystem/logo_conft.png';
 // banner assets
 import bannerOrbiter from 'images/ecosystem/banner_orbiter.png';
 import bannerLikwid from 'images/ecosystem/banner_likwid.png';
@@ -29,7 +31,9 @@ import bannerAABank from 'images/ecosystem/banner_aabank.png';
 import bannerAylab from 'images/ecosystem/banner_aylab.png';
 import bannerGateio from 'images/ecosystem/banner_gateio.png';
 import bannerXMint from 'images/ecosystem/banner_xmint.png';
-import bannerOxkWallet from 'images/ecosystem/banner_okx_wallet.png'; 
+import bannerOxkWallet from 'images/ecosystem/banner_okx_wallet.png';
+import bannerXenoBunny from 'images/ecosystem/banner_xeno_bunny.png';
+import bannerCoNFT from 'images/ecosystem/banner_conft.png';
 // social link logo assets
 import linkX from "images/headerX.svg";
 
@@ -170,6 +174,20 @@ export const ecosystemList:EcosystemList = {
             link: 'https://x.com/bullishs_io'
           }
         ]
+      },
+      {
+        name: 'XenoBunny',
+        introduction: 'Be a BOUNTY HUNTER & claim rewards across OmniChain Eco.',
+        tagName: 'Gaming',
+        logo: logoXenoBunny,
+        banner: bannerXenoBunny,
+        homepage: 'https://www.xenobunny.xyz/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/XenobunnyX'
+          }
+        ]
       }
     ]
   },
@@ -187,6 +205,20 @@ export const ecosystemList:EcosystemList = {
           {
             linkLogo: linkX,
             link: 'https://x.com/XMint_official'
+          }
+        ]
+      },
+      {
+        name: 'coNFT',
+        introduction: 'Multi-chain NFT ecosystem.',
+        tagName: 'NFT',
+        logo: logoCoNFT,
+        banner: bannerCoNFT,
+        homepage: 'https://conft.app/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/ConftApp'
           }
         ]
       }
