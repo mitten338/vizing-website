@@ -119,6 +119,19 @@ export default function Home() {
     });
   }, []);
 
+
+  const [shouldLoadSpline, setShouldLoadSpline] = useState(false);
+  useEffect(() => {
+    const checkPerformance = () => {
+      const nav: any = window.navigator;
+      if (nav.hardwareConcurrency > 4 && !nav.connection?.saveData) {
+        setShouldLoadSpline(true);
+      }
+    };
+
+    checkPerformance();
+  }, []);
+
   const options: ISourceOptions = useMemo(
     () => ({
       fullScreen: {
@@ -251,20 +264,21 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <div className={clsx("lg:mb-24 mb-[36px]", splineStyle)}>
-        <Spline
-          scene="/scene.splinecode"
-          onLoad={(e: Application) => {
-            if (e?.data?.schema) {
+      {shouldLoadSpline &&
+        <div className={clsx("lg:mb-24 mb-[36px]", splineStyle)}>
+          <Spline
+            scene="/scene.splinecode"
+            onLoad={(e: Application) => {
+              if (e?.data?.schema) {
+                setSplineLoaded(true);
+              }
+            }}
+            onStart={() => {
               setSplineLoaded(true);
-            }
-          }}
-          onStart={() => {
-            setSplineLoaded(true);
-          }}
-        ></Spline>
-      </div>
+            }}
+          ></Spline>
+        </div>
+      }
       <BoxCenter
         className={clsx(
           "text-[22px] lg:text-[44px] text-[#fff] mb-4",
