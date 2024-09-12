@@ -35,7 +35,7 @@ const Header = ({ lang }: ConLangParams) => {
   const arr = [
     {
       text: t("Home"),
-      jumpLink: '/en',
+      jumpLink: '/',
       isCurrentSite: true
     },
     {
@@ -48,7 +48,7 @@ const Header = ({ lang }: ConLangParams) => {
     },
     {
       text: t("Ecosystem"),
-      jumpLink: '/en/ecosystem',
+      jumpLink: '/ecosystem',
       isCurrentSite: true
     },
   ];

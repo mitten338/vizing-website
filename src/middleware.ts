@@ -23,8 +23,18 @@ export function middleware(request: NextRequest) {
   );
 
   if (pathnameHasLocale) {
+    // If the pathname already has a locale, we don't need to redirect
+    // We only need to handle the case where 'en' is in the pathname
+    // as we want to remove it for cleaner URLs
+    if (pathname.startsWith(`/en/`) || pathname === `/en`) {
+      const newPathname = pathname.replace(/^\/en(\/|$)/, '/');
+      request.nextUrl.pathname = newPathname;
+      return NextResponse.redirect(request.nextUrl);
+    }
+    
     return;
   }
+
   let lng;
   if (request.cookies.has(languageCookieName)) {
     // @ts-ignore
@@ -33,7 +43,9 @@ export function middleware(request: NextRequest) {
   if (!lng) lng = acceptLanguage.get(request.headers.get("Accept-Language"));
   if (!lng) lng = fallbackLng;
 
-  request.nextUrl.pathname = `/${lng}${pathname}`;
+  return;
 
-  return NextResponse.redirect(request.nextUrl);
+  // request.nextUrl.pathname = `/${lng}${pathname}`;
+
+  // return NextResponse.redirect(request.nextUrl);
 }

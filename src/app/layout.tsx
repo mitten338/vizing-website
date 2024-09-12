@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Header from "@/app/[lang]/Container/Header";
-import Footer from "@/app/[lang]/Container/Footer";
+import Header from "@/app/Container/Header";
+import Footer from "@/app/Container/Footer";
 import "./globals.css";
 import clsx from "clsx";
 

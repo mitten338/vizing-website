@@ -34,7 +34,7 @@ export const externalURLs = {
 
     bridge: 'https://bridge.vizing.com',
     explorer: 'https://explorer.vizing.com',
-    docs: 'https://docs.vizing.com/docs/intro',
+    docs: 'https://docs.vizing.com',
     status: 'https://vizing.instatus.com'
 }
 

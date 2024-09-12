@@ -2,12 +2,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { clsx } from "clsx";
 import styles from "./home.module.css";
-import Card from "@/app/[lang]/component/Card";
+import Card from "@/app/component/Card";
 import BoxCenter from "@/components/BoxCenter";
 import swiper_banner1_dark from "images/swiper_banner1_dark.png";
 import swiper_banner2_dark from "images/swiper_banner2_dark.png";
 import React from "react";
-import Roll from "@/app/[lang]/component/Roll";
+import Roll from "@/app/component/Roll";
 import Image from "next/image";
 import sec from "images/sec.png";
 import hl from "images/hl.png";

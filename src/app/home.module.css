@@ -21,7 +21,7 @@
 }
 
 .networkBg {
-  background-image: url("../../assets/images/network.png");
+  background-image: url("../assets/images/network.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position-y: -69px;
@@ -79,7 +79,7 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
   background-color: rgba(242, 63, 93, 0.06);
-  background-image: url("../../assets/images/attain1.png");
+  background-image: url("../assets/images/attain1.png");
   background-size: 981px auto;
   background-position-x: right;
   background-position-x: 554px;
@@ -121,7 +121,7 @@
 }
 
 .concat {
-  background-image: url("../../assets//images/concat.png");
+  background-image: url("../assets//images/concat.png");
   background-repeat: no-repeat;
   background-size: 100%;
 }
