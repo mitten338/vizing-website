@@ -16,6 +16,7 @@ import logoXMint from 'images/ecosystem/logo_xmint.png';
 import logoOxkWallet from 'images/ecosystem/logo_okx_wallet.png';
 import logoXenoBunny from 'images/ecosystem/logo_xeno_bunny.png';
 import logoCoNFT from 'images/ecosystem/logo_conft.png';
+import logoTermiX from 'images/ecosystem/logo_termix.png';
 // banner assets
 import bannerOrbiter from 'images/ecosystem/banner_orbiter.png';
 import bannerLikwid from 'images/ecosystem/banner_likwid.png';
@@ -34,6 +35,7 @@ import bannerXMint from 'images/ecosystem/banner_xmint.png';
 import bannerOxkWallet from 'images/ecosystem/banner_okx_wallet.png';
 import bannerXenoBunny from 'images/ecosystem/banner_xeno_bunny.png';
 import bannerCoNFT from 'images/ecosystem/banner_conft.png';
+import bannerTermiX from 'images/ecosystem/banner_termix.png';
 // social link logo assets
 import linkX from "images/headerX.svg";
 
@@ -186,6 +188,25 @@ export const ecosystemList:EcosystemList = {
           {
             linkLogo: linkX,
             link: 'https://x.com/XenobunnyX'
+          }
+        ]
+      }
+    ]
+  },
+  ai: {
+    categoryName: 'AI',
+    list: [
+      {
+        name: 'TermiX',
+        introduction: 'The AI-Powered Web3 Operating System.',
+        tagName: 'AI',
+        logo: logoTermiX,
+        banner: bannerTermiX,
+        homepage: 'https://app.termix.ai/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/termix_ai'
           }
         ]
       }
