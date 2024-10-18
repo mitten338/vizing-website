@@ -50,6 +50,7 @@ export interface ExternalUrls {
   status: string;
   scan: string;
   homepage: string;
+  telegram: string;
 }
 
 export interface EnvExternalURLs {
@@ -70,6 +71,7 @@ export const envExternalURLs: EnvExternalURLs = {
     status: "https://vizing.instatus.com",
     scan: "https://scan.vizing.com",
     homepage: "https://www.vizing.com",
+    telegram: "https://t.me/orbiter_vizing_chat",
   },
   test: {
     twitter: "https://x.com/Vizing_L2",
@@ -82,6 +84,7 @@ export const envExternalURLs: EnvExternalURLs = {
     status: "https://vizing.instatus.com",
     scan: "https://scan.vizing.com",
     homepage: "https://www.vizing.com",
+    telegram: "https://t.me/orbiter_vizing_chat",
   },
   production: {
     twitter: "https://x.com/Vizing_L2",
@@ -94,6 +97,7 @@ export const envExternalURLs: EnvExternalURLs = {
     status: "https://vizing.instatus.com",
     scan: "https://scan.vizing.com",
     homepage: "https://www.vizing.com",
+    telegram: "https://t.me/orbiter_vizing_chat",
   },
 };
 
