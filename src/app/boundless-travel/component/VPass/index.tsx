@@ -5,7 +5,6 @@ import { ethers, JsonRpcProvider, ZeroAddress, Contract } from "ethers";
 import { clsx } from "clsx";
 import Image from "next/image";
 import {
-  useBalance,
   useAccount,
   useReadContract,
   useChainId,
@@ -13,7 +12,6 @@ import {
   useGasPrice,
   useBlockTransactionCount,
 } from "wagmi";
-import { readContract } from "@wagmi/core";
 
 import styles from "./style.module.css";
 import { EnvMode, getCurrentEnvExternalUrls, vizingPassSBTContractAddress } from "@/utils/constant";
@@ -27,7 +25,12 @@ import { referralERC20Abi } from "@/abi/referralErc20";
 import { vizingPassSBTAbi } from "@/abi/vizingPassSBT";
 import { config } from "@/config/config";
 import { getChainId } from "@/utils/chainConfig";
-import { requestUserLoginInfo, getPreMintInfo, getMintSigature } from "@/api/boundlessTravel";
+import {
+  requestUserLoginInfo,
+  getPreMintInfo,
+  getMintSigature,
+  bindAcccountAndVPass,
+} from "@/api/boundlessTravel";
 import { useContract, getCurrentEnvContract } from "@/hooks/i18n/client/useContract";
 import { useEthersSigner } from "@/hooks/i18n/client/useEthersSigner";
 import { useEnv } from "@/providers/envConfigProvider";
@@ -80,10 +83,11 @@ export default function VPass() {
   const [isUserMint, setIsUserMint] = useState(false);
   const [isUserMintLoading, setIsUserMintLoading] = useState(true);
   const [vPassId, setVPassId] = useState<number>();
-  const intervalIdRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const [isMinting, setIsMinting] = useState(false);
-  const [isMinting2, setIsMinting2] = useState(false);
-  const messageTaskRef = useRef(false);
+  const [showCongratsDialog, setShowCongratsDialog] = useState(false);
+  const [isUserMintPending, setIsUserMintPending] = useState(false);
+  const congratsIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const intervalIdRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const { data: referralResult, refetch: refetchReferralResult } = useReadContract({
     abi: vizingPassSBTAbi,
@@ -99,7 +103,6 @@ export default function VPass() {
     }
     try {
       await navigator.clipboard.writeText(inviteLink);
-      console.log("copy inviteLink", inviteLink);
       toast.success("Copy invite link successfully!");
     } catch (err) {
       console.error("copy clipboard failed:", err);
@@ -110,53 +113,59 @@ export default function VPass() {
     setSelectedChain(chain);
   };
 
-  const initUserLoginInfo = useCallback(async () => {
-    if (account.address) {
-      // const { isPending, isFetching, isLoading, data, refetch } = useAccountTravelInfo();
-      const accountLoginInfo = await requestUserLoginInfo({
-        account: account.address,
-      });
-      setAccountTravelInfo(accountLoginInfo);
-      const inviteLink = `${currentEnvExternalUrls.homepage}/boundless-travel?inviteCode=${accountLoginInfo.code}`;
-      setInviteLink(inviteLink);
-    }
-  }, [account.address, setAccountTravelInfo, currentEnvExternalUrls]);
-
-  const initUserMintInfo = useCallback(async () => {
+  const intervalCheckUserMintInfo = useCallback(async () => {
     const userAddress = account.address;
-    if (!userAddress) {
-      return;
+    if (userAddress) {
+      const accountLoginInfo = await requestUserLoginInfo({
+        account: userAddress,
+      });
+      const vizingProvider = new JsonRpcProvider(vizingConfig.rpcUrl);
+      const contractVPassSBT = await initCotractVizingPassSBT(vizingProvider);
+      const isUserMint = await contractVPassSBT.getIfAlreadyMint(userAddress);
+      if (typeof accountLoginInfo.vPassHash === "string" && isUserMint) {
+        // vPass nft has been generated
+        const vPassId = await contractVPassSBT.getPersonalTokenSoulId(userAddress);
+        setVPassId(vPassId);
+        clearInterval(congratsIntervalRef.current);
+        setAccountTravelInfo(accountLoginInfo);
+        setIsUserMint(true);
+        setShowCongratsDialog(true);
+      }
     }
-    try {
+  }, [account.address, setAccountTravelInfo, initCotractVizingPassSBT, vizingConfig]);
+
+  const initUserLoginInfo = useCallback(async () => {
+    const userAddress = account.address;
+    if (userAddress) {
+      const accountLoginInfo = await requestUserLoginInfo({
+        account: userAddress,
+      });
       const vizingProvider = new JsonRpcProvider(vizingConfig.rpcUrl);
       const contractVPassSBT = await initCotractVizingPassSBT(vizingProvider);
       const isUserMint = await contractVPassSBT.getIfAlreadyMint(userAddress);
       setIsUserMint(isUserMint);
       setIsUserMintLoading(false);
-    } catch (error) {
-      console.error("Get mint info error", error);
+      if (typeof accountLoginInfo.vPassHash === "string" && !isUserMint) {
+        // mint request is pending
+        setIsUserMintPending(true);
+        if (!congratsIntervalRef.current) {
+          congratsIntervalRef.current = setInterval(() => {
+            intervalCheckUserMintInfo();
+          }, 15000);
+        }
+      }
+      setAccountTravelInfo(accountLoginInfo);
+      const inviteLink = `${currentEnvExternalUrls.homepage}/boundless-travel?inviteCode=${accountLoginInfo.code}`;
+      setInviteLink(inviteLink);
     }
-  }, [account.address, initCotractVizingPassSBT, vizingConfig]);
-
-  const getCurrentEnvChainBalance = useCallback(async () => {
-    const userAddress = account.address;
-    if (userAddress) {
-      const currentEnvChainList = getCurrentEnvChainConfig();
-
-      const chainListWithBalance = await Promise.all(
-        currentEnvChainList.map(async (chain) => {
-          const provider = new JsonRpcProvider(chain.rpcUrl);
-          const balance = await provider.getBalance(userAddress);
-          return {
-            ...chain,
-            balance,
-          };
-        }),
-      );
-      setChainList(chainListWithBalance);
-      setIsChainListLoading(false);
-    }
-  }, [account.address]);
+  }, [
+    account.address,
+    setAccountTravelInfo,
+    currentEnvExternalUrls,
+    intervalCheckUserMintInfo,
+    initCotractVizingPassSBT,
+    vizingConfig,
+  ]);
 
   const renderDialogLevel2Content = useCallback(() => {
     return (
@@ -171,7 +180,6 @@ export default function VPass() {
           <div
             onClick={() => {
               hideDialog();
-              initUserMintInfo();
             }}
             className="flex justify-center items-center h-[56px] mb-[20px] rounded-[12px] text-[20px] text-white font-[700] bg-[#FF486D] hover:cursor-pointer"
           >
@@ -203,7 +211,6 @@ export default function VPass() {
           <div
             onClick={() => {
               hideDialog();
-              initUserMintInfo();
             }}
             className="flex justify-center items-center h-[56px] mb-[20px] rounded-[12px] text-[20px] text-black font-[700] bg-white hover:cursor-pointer"
           >
@@ -219,6 +226,51 @@ export default function VPass() {
       </div>
     );
   }, [hideDialog, currentEnvExternalUrls, showDialog, renderDialogLevel2Content]);
+
+  const getCurrentEnvChainBalance = useCallback(async () => {
+    const userAddress = account.address;
+    if (userAddress) {
+      const currentEnvChainList = getCurrentEnvChainConfig();
+
+      const chainListWithBalance = await Promise.all(
+        currentEnvChainList.map(async (chain) => {
+          const provider = new JsonRpcProvider(chain.rpcUrl);
+          const balance = await provider.getBalance(userAddress);
+          return {
+            ...chain,
+            balance,
+          };
+        }),
+      );
+      setChainList(chainListWithBalance);
+      setIsChainListLoading(false);
+    }
+  }, [account.address]);
+
+  const handleMintSuccess = useCallback(
+    async (transactionHash: string) => {
+      const userAddress = account.address;
+      if (!userAddress) {
+        return;
+      }
+      const transactionHashParam = `${walletChainId}-${transactionHash}`;
+      const bindRes = await bindAcccountAndVPass({
+        account: userAddress,
+        transactionHash: transactionHashParam,
+      });
+      if (bindRes.success) {
+        setIsUserMintPending(true);
+        if (!congratsIntervalRef.current) {
+          congratsIntervalRef.current = setInterval(() => {
+            intervalCheckUserMintInfo();
+          }, 15000);
+        }
+      } else {
+        toast.error("Network error, mint VPass failed.");
+      }
+    },
+    [account.address, intervalCheckUserMintInfo, walletChainId],
+  );
 
   const crossChainMint = useCallback(
     async (signature: string) => {
@@ -301,7 +353,9 @@ export default function VPass() {
           getEncodeData,
           { value: getTotalETHAmount },
         );
-        showDialog(renderDialogLevel1Content());
+        console.log("crossMintResult", crossMintResult);
+        handleMintSuccess(crossMintResult.hash);
+        // showDialog(renderDialogLevel1Content());
         // TODO: show status toast after crossMint
         setIsMinting(false);
       } catch (error) {
@@ -313,10 +367,10 @@ export default function VPass() {
       account.address,
       currentEnvChainConfig,
       initCotractVizingPassSBT,
-      showDialog,
       signer,
-      renderDialogLevel1Content,
       vizingConfig,
+      handleMintSuccess,
+      walletChainId,
     ],
   );
 
@@ -341,20 +395,11 @@ export default function VPass() {
           value: mintPrice,
         },
       );
-      // TODO: show pending toast
-      showDialog(renderDialogLevel1Content());
+      handleMintSuccess(mintResult.hash);
     } catch (error) {
       console.error("Mint VPass failed.", error);
     }
-    // setIsMinting(false);
-  }, [
-    account.address,
-    accountTravelInfo,
-    initCotractVizingPassSBT,
-    renderDialogLevel1Content,
-    showDialog,
-    signer,
-  ]);
+  }, [account.address, accountTravelInfo, initCotractVizingPassSBT, signer, handleMintSuccess]);
 
   const mintVPassNotOnVizing = useCallback(async () => {
     const userAddress = account.address;
@@ -363,7 +408,6 @@ export default function VPass() {
     }
     try {
       const preMintInfo = await getPreMintInfo({ account: userAddress });
-      console.log("mintVPassNotOnVizing preMintInfo", preMintInfo);
       intervalIdRef.current = setInterval(async () => {
         const signatureRes = await getMintSigature({
           hash: preMintInfo.signHash,
@@ -382,10 +426,8 @@ export default function VPass() {
   const mintVPass = () => {
     try {
       if (account.chainId === vizingConfig.id) {
-        console.log("mint on vizing");
         mintVPassOnVizing();
       } else {
-        console.log("mint not on vizing");
         mintVPassNotOnVizing();
       }
     } catch (error) {
@@ -403,25 +445,11 @@ export default function VPass() {
         toast.info("Please select chain.");
         return;
       }
-      // setIsMinting2(true);
-      console.log("after set isMinting", isMinting);
       if (selectedChain.id !== account.chainId) {
         toast("Switch to the chain you selected.");
-        switchChain(
-          {
-            chainId: selectedChain.id,
-          },
-          // {
-          //   onSuccess: () => {
-          //     console.log("switch chain success");
-          //     mintVPass();
-          //   },
-          //   onError: (switchError) => {
-          //     console.log("switch error", switchError);
-          //     setIsMinting(false);
-          //   },
-          // },
-        );
+        switchChain({
+          chainId: selectedChain.id,
+        });
       } else {
         setIsMinting(true);
         mintVPass();
@@ -431,39 +459,6 @@ export default function VPass() {
       setIsMinting(false);
     }
   };
-
-  // const handleMintVPass = async () => {
-  //   if (isMinting) {
-  //     return;
-  //   }
-  //   if (!selectedChain) {
-  //     toast.info("Please select chain.");
-  //     return;
-  //   }
-  //   setIsMinting(true);
-  //   let fromChainId = walletChainId;
-  //   try {
-  //     if (selectedChain.id !== walletChainId) {
-  //       // wallet chain is not matching, change chain
-  //       // switch chain async
-  //       // const switchResult = await switchChainAsync({
-  //       //   chainId: selectedChain.id,
-  //       // });
-  //       switchChain({
-  //         chainId: selectedChain.id,
-  //       });
-  //       messageTaskRef.current = true;
-  //     } else {
-  //       if (fromChainId === vizingConfig.id) {
-  //         mintVPassOnVizing();
-  //       } else {
-  //         mintVPassNotOnVizing(fromChainId);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     setIsMinting(false);
-  //   }
-  // };
 
   const getUserSBTInfo = useCallback(async () => {
     const userAddress = account.address;
@@ -538,25 +533,23 @@ export default function VPass() {
 
   useEffect(() => {
     initUserLoginInfo();
-    initUserMintInfo();
     getCurrentEnvChainBalance();
     getUserVPassId();
-  }, [initUserLoginInfo, initUserMintInfo, getCurrentEnvChainBalance, getUserVPassId]);
+  }, [initUserLoginInfo, getCurrentEnvChainBalance, getUserVPassId]);
 
-  // useEffect(() => {
-  //   // console.log("signer change effectd", signer);
-  //   if (signer && isMinting) {
-  //     try {
-  //       if (walletChainId === vizingConfig.id) {
-  //         mintVPassOnVizing();
-  //       } else {
-  //         mintVPassNotOnVizing(walletChainId);
-  //       }
-  //     } catch (error) {
-  //       console.error("signer effect error", error);
-  //     }
-  //   }
-  // }, [signer, mintVPassNotOnVizing, mintVPassOnVizing, vizingConfig, walletChainId, isMinting]);
+  useEffect(() => {
+    if (showCongratsDialog) {
+      showDialog(renderDialogLevel1Content());
+    }
+  }, [showCongratsDialog, showDialog, renderDialogLevel1Content]);
+
+  useEffect(() => {
+    return () => {
+      if (congratsIntervalRef.current) {
+        clearInterval(congratsIntervalRef.current);
+      }
+    };
+  }, []);
 
   const isInvited =
     accountTravelInfo?.invitedCode && accountTravelInfo?.invitedCode !== emptyInvitedCode;
@@ -636,15 +629,9 @@ export default function VPass() {
                       {isInvited ? `0.0008 ETH` : "0.001 ETH"}
                     </span>
                   </div>
-                  <div
-                    onClick={handleMintVPassClick}
-                    className={clsx(
-                      "relative h-[56px] w-[262px] flex justify-center items-center text-[20px] font-[700] text-white bg-[#FF486D] rounded-[12px] hover:cursor-pointer",
-                      isMinting ? styles.isMinting : "",
-                    )}
-                  >
-                    Mint
-                    {isMinting && (
+                  {isUserMintPending ? (
+                    <div className="relative h-[56px] w-[262px] flex justify-center items-center text-[20px] font-[700] text-white bg-[#FF486D] rounded-[12px] hover:cursor-not-allowed opacity-30">
+                      Mint
                       <div
                         className={clsx(
                           "absolute top-[50%] translate-y-[-50%] right-[70px] iline-block scale-55",
@@ -652,14 +639,42 @@ export default function VPass() {
                       >
                         <LoadingSpin />
                       </div>
-                    )}
-                    {isInvited && (
-                      <div className="absolute right-[6px] top-[6px] h-[44px] w-[44px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white">
-                        <span>20%</span>
-                        <span>OFF</span>
-                      </div>
-                    )}
-                  </div>
+                      {isInvited && (
+                        <div className="absolute right-[6px] top-[6px] h-[44px] w-[44px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white">
+                          <span>20%</span>
+                          <span>OFF</span>
+                        </div>
+                      )}
+                      <p className="absolute top-[100%] left-0 text-[12px] leading-[24px] text-[rgba(255,255,255,0.6)] font-[400]">
+                        Minting takes approximately 4 minutes.
+                      </p>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={handleMintVPassClick}
+                      className={clsx(
+                        "relative h-[56px] w-[262px] flex justify-center items-center text-[20px] font-[700] text-white bg-[#FF486D] rounded-[12px] hover:cursor-pointer",
+                        isMinting ? styles.isMinting : "",
+                      )}
+                    >
+                      Mint
+                      {isMinting && (
+                        <div
+                          className={clsx(
+                            "absolute top-[50%] translate-y-[-50%] right-[70px] iline-block scale-55",
+                          )}
+                        >
+                          <LoadingSpin />
+                        </div>
+                      )}
+                      {isInvited && (
+                        <div className="absolute right-[6px] top-[6px] h-[44px] w-[44px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white">
+                          <span>20%</span>
+                          <span>OFF</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
