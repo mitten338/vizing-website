@@ -697,10 +697,11 @@ export default function VPass() {
   return (
     <div className="w-full text-white">
       <h1 className="mb-[56px] text-white text-[48px] font-medium">V Pass</h1>
-      <div className="flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021]">
-        <div className="flex justify-start mb-[40px] pl-[106px]">
+      <div className="flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021] overflow-hidden">
+        <div className="relative flex justify-start mb-[40px] pl-[106px]">
+          <SvgDialogBgPattern className="absolute z-1 top-[-600px] left-[-600px]" />
           <Image
-            className="h-[250px] w-[250px] mr-[97px]"
+            className="relative z-2 h-[250px] w-[250px] mr-[97px]"
             src={ImgPassport}
             alt="boundless-travel-passport"
           />
@@ -825,7 +826,8 @@ export default function VPass() {
         </p>
       </div>
       <h1 className="mt-[88px] mb-[56px] text-white text-[48px] font-medium">Referral</h1>
-      <div className="flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021]">
+      <div className="relative flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021] overflow-hidden">
+        <SvgDialogBgPattern className="absolute z-1 top-[-600px] left-[-600px]" />
         <div className="flex mb-[40px]">
           <Image className="h-[166px] w-[178px] mr-[54px]" src={ImgReferral} alt="referral-image" />
           <div className="flex flex-col">
