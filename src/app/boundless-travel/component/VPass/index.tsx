@@ -14,7 +14,7 @@ import {
 } from "wagmi";
 
 import styles from "./style.module.css";
-import { EnvMode, getCurrentEnvExternalUrls, vizingPassSBTContractAddress } from "@/utils/constant";
+import { EnvMode, getCurrentEnvExternalUrls, TxStatus } from "@/utils/constant";
 import { activityList } from "./data";
 import {
   getCurrentEnvChainConfig,
@@ -84,6 +84,7 @@ export default function VPass() {
   const [isMinting, setIsMinting] = useState(false);
   const [showCongratsDialog, setShowCongratsDialog] = useState(false);
   const [isUserMintPending, setIsUserMintPending] = useState(false);
+  const [hasClaimTask, setHasClaimTask] = useState(false);
   const congratsIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const intervalIdRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -297,6 +298,7 @@ export default function VPass() {
       if (!userAddress) {
         return;
       }
+
       const transactionHashParam = `${walletChainId}-${transactionHash}`;
       const bindRes = await bindAcccountAndVPass({
         account: userAddress,
@@ -393,10 +395,9 @@ export default function VPass() {
           return;
         }
         const getTotalETHAmount = getOmniMessageFee + mintPrice;
-        const currentTimestamp = Math.floor(Date.now() / 1000);
         const crossMintResult = await contractLauchPad.Launch(
-          BigInt(currentTimestamp + 200),
-          BigInt(currentTimestamp + 60000),
+          0,
+          0,
           ZeroAddress,
           account.address,
           mintPrice,
@@ -405,11 +406,14 @@ export default function VPass() {
           getEncodeData,
           { value: getTotalETHAmount },
         );
-        console.log("crossMintResult", crossMintResult);
-        handleMintSuccess(crossMintResult.hash);
-        // showDialog(renderDialogLevel1Content());
+        const crossMintTx = await crossMintResult.wait();
+        if (crossMintTx.status === TxStatus.SUCCESS) {
+          handleMintSuccess(crossMintResult.hash);
+        } else {
+          toast.error("Mint failed.");
+          setIsMinting(false);
+        }
         // TODO: show status toast after crossMint
-        setIsMinting(false);
       } catch (error) {
         console.error("cross chain mint error", error);
         setIsMinting(false);
@@ -432,17 +436,17 @@ export default function VPass() {
     if (!userAddress || !signer) {
       return;
     }
-    const preMintInfo = await getPreMintInfo({ account: userAddress });
-    const contractVPassSBT = await initCotractVizingPassSBT(signer);
-    const invitedCode = accountTravelInfo?.invitedCode || emptyInvitedCode;
-    const inviterAddress = preMintInfo.invitedAccount;
-    const mintPrice =
-      invitedCode === emptyInvitedCode ? ethers.parseEther("0.001") : ethers.parseEther("0.0008");
-    const isUserBalanceEnough = await checkIsUserBalanceEnough(userAddress, mintPrice);
-    if (!isUserBalanceEnough) {
-      return;
-    }
     try {
+      const preMintInfo = await getPreMintInfo({ account: userAddress });
+      const contractVPassSBT = await initCotractVizingPassSBT(signer);
+      const invitedCode = accountTravelInfo?.invitedCode || emptyInvitedCode;
+      const inviterAddress = preMintInfo.invitedAccount;
+      const mintPrice =
+        invitedCode === emptyInvitedCode ? ethers.parseEther("0.001") : ethers.parseEther("0.0008");
+      const isUserBalanceEnough = await checkIsUserBalanceEnough(userAddress, mintPrice);
+      if (!isUserBalanceEnough) {
+        return;
+      }
       const mintResult = await contractVPassSBT.publicMint(
         preMintInfo.invitedCode,
         preMintInfo.code,
@@ -454,6 +458,7 @@ export default function VPass() {
       );
       handleMintSuccess(mintResult.hash);
     } catch (error) {
+      setIsMinting(false);
       console.error("Mint VPass failed.", error);
     }
     // setIsMinting(false);
@@ -536,39 +541,96 @@ export default function VPass() {
     return userSBTInfo;
   }, [account, vizingConfig, initCotractVizingPassSBT]);
 
-  const isClaimValid = async () => {
+  const isClaimValid = useCallback(async () => {
     const userSBTInfo = await getUserSBTInfo();
     const totalClaim = userSBTInfo[4];
     const totalReferral = userSBTInfo[3];
     return totalClaim < totalReferral;
-  };
+  }, [getUserSBTInfo]);
 
-  const handleClaim = async () => {
+  const excuteClaimTask = useCallback(async () => {
+    if (!signer) {
+      return;
+    }
+    try {
+      setHasClaimTask(false);
+      const contractVPassSBT = await initCotractVizingPassSBT(signer);
+      const referralResult = await contractVPassSBT.referralMint();
+      const referralTx = await referralResult.wait();
+      if (referralTx.status === TxStatus.SUCCESS) {
+        toast.success(referralResult.hash, {
+          position: "top-right",
+        });
+        refetchReferralResult();
+        setHasClaimTask(false);
+      }
+    } catch (error) {
+      setHasClaimTask(false);
+      console.error("Excute claim failed", error);
+    }
+  }, [initCotractVizingPassSBT, signer, refetchReferralResult]);
+
+  const handleClaim = useCallback(async () => {
     if (!signer) {
       return;
     }
     // check user has unclaimed token
     const isClaimAvailable = await isClaimValid();
+    console.log("handle claim");
     if (!isClaimAvailable) {
       toast.info("There is no token left to claim.");
       return;
     }
-    if (walletChainId !== vizingConfig.id) {
-      // wallet chain is not matching, change chain
-      const switchResult = await switchChainAsync({
+    console.log("walletChainId", walletChainId);
+    console.log("account chain id", account.chainId);
+    if (account.chainId !== vizingConfig.id) {
+      // await implement
+      // const switchResult = await switchChainAsync({
+      //   chainId: vizingConfig.id,
+      // });
+      // const contractVPassSBT = await initCotractVizingPassSBT(signer);
+      // const referralResult = await contractVPassSBT.referralMint();
+      // console.log("referralResult", referralResult);
+      // toast.success(referralResult.hash, {
+      //   position: "top-right",
+      // });
+      // refetchReferralResult();
+      // then implement
+      // switchChainAsync({
+      //   chainId: vizingConfig.id,
+      // }).then(async (res) => {
+      //   console.log("switchCHainAsync res", res);
+      //   const contractVPassSBT = await initCotractVizingPassSBT(signer);
+      //   const referralResult = await contractVPassSBT.referralMint();
+      //   console.log("referralResult", referralResult);
+      //   toast.success(referralResult.hash, {
+      //     position: "top-right",
+      //   });
+      //   refetchReferralResult();
+      // });
+      switchChain({
         chainId: vizingConfig.id,
       });
-      const contractVPassSBT = await initCotractVizingPassSBT(signer);
-      const referralResult = await contractVPassSBT.referralMint();
-      toast.success("Claim successfully!");
-      refetchReferralResult();
+      setHasClaimTask(true);
     } else {
-      const contractVPassSBT = await initCotractVizingPassSBT(signer);
-      const referralResult = await contractVPassSBT.referralMint();
-      toast.success("Claim successfully!");
-      refetchReferralResult();
+      // const contractVPassSBT = await initCotractVizingPassSBT(signer);
+      // const referralResult = await contractVPassSBT.referralMint();
+      // console.log("referralResult", referralResult);
+      // toast.success(referralResult.hash, {
+      //   position: "top-right",
+      // });
+      // refetchReferralResult();
+      excuteClaimTask();
     }
-  };
+  }, [
+    account.chainId,
+    isClaimValid,
+    signer,
+    vizingConfig,
+    walletChainId,
+    switchChain,
+    excuteClaimTask,
+  ]);
 
   const getSBTContractAddressShortcut = () => {
     const address = getCurrentEnvContract().sbt;
@@ -607,6 +669,14 @@ export default function VPass() {
       showDialog(renderDialogLevel1Content());
     }
   }, [showCongratsDialog, showDialog, renderDialogLevel1Content]);
+
+  useEffect(() => {
+    // this effect is for cross chain claim
+    // the reason is that cannot get the lastest signer after chain changing
+    if (signer && hasClaimTask && account.chainId === vizingConfig.id) {
+      excuteClaimTask();
+    }
+  }, [signer, hasClaimTask, excuteClaimTask, account.chainId, vizingConfig]);
 
   useEffect(() => {
     return () => {
@@ -784,9 +854,16 @@ export default function VPass() {
                 <p className="w-[260px] truncate">{inviteLink}</p>
                 <div
                   onClick={copyInviteLink}
-                  className="h-[56px] w-[56px] flex items-center justify-center rounded-[12px] bg-[#FF486D] hover:cursor-pointer"
+                  className="h-[56px] w-[56px] mr-[10px] flex items-center justify-center rounded-[12px] bg-[#FF486D] hover:cursor-pointer"
                 >
                   <IconCopy className="h-[30px] w-[30px] hover:cursor-pointer" />
+                </div>
+                <div
+                  onClick={copyInviteLink}
+                  className="h-[56px] w-[56px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white hover:cursor-pointer"
+                >
+                  <span>Earn</span>
+                  <span>50%</span>
                 </div>
               </div>
               <a href={currentEnvExternalUrls.twitter} target="_blank" rel="noopener noreferrer">
