@@ -410,7 +410,7 @@ export default function VPass() {
         if (crossMintTx.status === TxStatus.SUCCESS) {
           handleMintSuccess(crossMintResult.hash);
         } else {
-          toast.error("Mint failed.");
+          toast.error("NFT minting failed. Please try again later.");
           setIsMinting(false);
         }
         // TODO: show status toast after crossMint
