@@ -819,7 +819,7 @@ export default function VPass() {
           Let&apos;s expand the Vizing ecosystem together by collecting Boundless Travel NFTs!
         </p>
       </div>
-      <h1 className="mt-[88px] mb-[56px] text-white text-[48px] font-medium">Referral NFT</h1>
+      <h1 className="mt-[88px] mb-[56px] text-white text-[48px] font-medium">Referral</h1>
       <div className="flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021]">
         <div className="flex mb-[40px]">
           <Image className="h-[166px] w-[178px] mr-[54px]" src={ImgReferral} alt="referral-image" />
@@ -877,7 +877,7 @@ export default function VPass() {
         <p className="mb-[24px] text-[14px] text-[rgba(255,255,255,0.6)] font-[400] leading-[20px]">
           Share your invite code or Twitter post with your friends. Once your friend successfully
           mints a V Pass, it will be considered a successful referral. As the referrer, you will
-          receive 50% profit sharing(0.0005E) and a Referral Token.
+          receive 50% profit sharing(0.0004E) and a Referral Token.
         </p>
       </div>
       {/* The following: Activity list hidde temporary */}
