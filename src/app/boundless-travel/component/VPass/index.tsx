@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { ethers, JsonRpcProvider, ZeroAddress, Contract } from "ethers";
 import { clsx } from "clsx";
@@ -632,6 +632,11 @@ export default function VPass() {
     excuteClaimTask,
   ]);
 
+  const handleTweetClick = () => {
+    const tweetContent = `🎉 I’ve joined Vizing’s Boundless Travel event and earned exclusive NFT rewards! Come join me and start earning your rewards now by clicking my invitation link! 🌐%0A${inviteLink}%0A%23Vizing %23NFT %23Crypto`;
+    window.open(`https://twitter.com/intent/tweet?text=${tweetContent}`);
+  };
+
   const getSBTContractAddressShortcut = () => {
     const address = getCurrentEnvContract().sbt;
     const headLength = 16;
@@ -860,17 +865,17 @@ export default function VPass() {
                 </div>
                 <div
                   onClick={copyInviteLink}
-                  className="h-[56px] w-[56px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white hover:cursor-pointer"
+                  className="h-[56px] w-[56px] flex flex-col items-center justify-center rounded-[12px] text-[#FF486D] text-[14px] font-[600] bg-white"
                 >
                   <span>Earn</span>
                   <span>50%</span>
                 </div>
               </div>
-              <a href={currentEnvExternalUrls.twitter} target="_blank" rel="noopener noreferrer">
-                <div className="h-[56px] w-[56px] flex items-center justify-center mr-[10px] rounded-[12px] bg-[rgba(255,72,109,0.5)]">
+              <div onClick={handleTweetClick}>
+                <div className="h-[56px] w-[56px] flex items-center justify-center mr-[10px] rounded-[12px] bg-[rgba(255,72,109,0.5)] hover:cursor-pointer hover:bg-[rgb(242,63,93)] duration-200">
                   <IconTwitterWhite className="h-[23px] w-[27px]" />
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
