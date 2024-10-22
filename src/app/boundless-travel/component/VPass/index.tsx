@@ -335,7 +335,6 @@ export default function VPass() {
           preMintInfo.invitedCode === encodeEmptyInvitedCode
             ? ethers.parseEther("0.001")
             : ethers.parseEther("0.0008");
-        console.log("find chain config", walletChainId);
         const currentChainConfig = currentEnvChainConfig.find((chain) => {
           return chain.id === walletChainId;
         });
@@ -580,13 +579,10 @@ export default function VPass() {
     }
     // check user has unclaimed token
     const isClaimAvailable = await isClaimValid();
-    console.log("handle claim");
     if (!isClaimAvailable) {
       toast.info("There is no token left to claim.");
       return;
     }
-    console.log("walletChainId", walletChainId);
-    console.log("account chain id", account.chainId);
     if (account.chainId !== vizingConfig.id) {
       // await implement
       // const switchResult = await switchChainAsync({
