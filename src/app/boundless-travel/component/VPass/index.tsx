@@ -667,6 +667,20 @@ export default function VPass() {
     window.open(`${explorerUrl}/address/${sbtContractAddress}`);
   };
 
+  const scrollToReferral = () => {
+    const targetElement = document.getElementById("referral_target");
+    if (targetElement) {
+      const offset = 100; // distance between targetElement and screen top
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     initUserLoginInfo();
     getUserVPassId();
@@ -675,9 +689,13 @@ export default function VPass() {
 
   useEffect(() => {
     if (showCongratsDialog) {
+      setShowCongratsDialog(false);
       showDialog({
         content: renderDialogLevel1Content(),
         isShowClose: true,
+        onClose: () => {
+          scrollToReferral();
+        },
       });
     }
   }, [showCongratsDialog, showDialog, renderDialogLevel1Content]);
@@ -832,7 +850,9 @@ export default function VPass() {
           rebate of 0.0004 ETH.
         </p>
       </div>
-      <h1 className="mt-[88px] mb-[56px] text-white text-[48px] font-medium">Referral</h1>
+      <h1 id="referral_target" className="mt-[88px] mb-[56px] text-white text-[48px] font-medium">
+        Referral
+      </h1>
       <div className="relative flex flex-col p-[44px] border border-[1px] border-[rgba(255,255,255,0.12)] rounded-[24px] bg-[#232021] overflow-hidden">
         <SvgDialogBgPattern className="absolute z-1 top-[-600px] left-[-600px]" />
         <div className="flex mb-[40px]">
