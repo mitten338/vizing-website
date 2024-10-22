@@ -216,20 +216,24 @@ export default function VPass() {
   const renderDialogLevel1Content = useCallback(() => {
     const handleDialogShareClick = () => {
       hideDialog();
-      showDialog(renderDialogLevel2Content());
+      showDialog({
+        content: renderDialogLevel2Content(),
+        isShowClose: true,
+      });
       const twitterLink = currentEnvExternalUrls.twitter;
       window.open(twitterLink);
     };
 
     return (
-      <div className="relative h-[378px] w-[618px] p-[44px] bg-[#232021] rounded-[24px] overflow-hidden">
+      <div className="relative flex items-center justify-center w-[618px] p-[44px] bg-[#232021] rounded-[24px] overflow-hidden">
         <SvgDialogBgPattern className="absolute z-1 top-[-500px] left-[-500px]" />
         <div className="relative z-2">
-          <div className="flex flex-col mb-[70px] text-[36px] font-[500] text-center leading-[44px] text-center">
+          <div className="flex flex-col text-[36px] mt-[42px] mb-[42px] font-[500] text-center leading-[44px] text-center">
             <p>Congratulations on</p>
             <p>obtaining your V Pass!</p>
           </div>
-          <div
+          {/* hide button temporary */}
+          {/* <div
             onClick={() => {
               hideDialog();
             }}
@@ -242,7 +246,7 @@ export default function VPass() {
             className="flex justify-center items-center h-[56px] mb-[20px] rounded-[12px] text-[20px] text-white font-[700] bg-[#FF486D] hover:cursor-pointer"
           >
             Share to earn minting fee rewards! &gt;
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -671,7 +675,10 @@ export default function VPass() {
 
   useEffect(() => {
     if (showCongratsDialog) {
-      showDialog(renderDialogLevel1Content());
+      showDialog({
+        content: renderDialogLevel1Content(),
+        isShowClose: true,
+      });
     }
   }, [showCongratsDialog, showDialog, renderDialogLevel1Content]);
 
