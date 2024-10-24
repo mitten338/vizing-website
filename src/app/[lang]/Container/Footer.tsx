@@ -15,7 +15,15 @@ const Footer = () => {
         },
         {
           title: "Documentation",
-          url: externalURLs.docs,
+          url: externalURLs.developerDocs,
+        },
+        {
+          title: "Testnet bridge",
+          url: externalURLs.testNetBridge,
+        },
+        {
+          title: "Testnet browser",
+          url: externalURLs.testNetBrowser,
         },
       ],
     },
@@ -34,6 +42,10 @@ const Footer = () => {
           title: "Explorer",
           url: externalURLs.explorer,
         },
+        {
+          title: "VizingScan",
+          url: externalURLs.vizingScan,
+        },
       ],
     },
     {
@@ -50,6 +62,10 @@ const Footer = () => {
         {
           title: "Medium",
           url: externalURLs.medium,
+        },
+        {
+          title: "Telegram",
+          url: externalURLs.telegram,
         },
       ],
     },
