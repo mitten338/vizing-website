@@ -38,7 +38,7 @@ import TheoremToRevolutionImage2 from '@/assets/images/homepage/theorem-to-revol
 import TheoremToRevolutionImage3 from '@/assets/images/homepage/theorem-to-revolution-image3.png'
 import ImageFeatureSectionBg from '@/assets/images/homepage/feature-section-bg.png'
 import SvgHaloBgPattern from '@/assets/images/homepage/halo-bg-pattern.svg'
-import BeyondOmniChain from '@/assets/images/homepage/beyond-omni-chain20241024.png'
+import BeyondOmniChain from '@/assets/images/homepage/beyond-omni-chain.png'
 import ImageSocialMedaiBg from '@/assets/images/homepage/social-media-bg.png'
 import IconImageYoutube from '@/assets/images/homepage/icon/youtube.png'
 import IconImageGithub from '@/assets/images/homepage/icon/github.png'
