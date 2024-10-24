@@ -190,7 +190,7 @@ const Header = ({ lang }: ConLangParams) => {
           <Logo className="h-10 w-auto" />
         </Link>
       </div>
-      <ul className="w-fit flex items-center justify-center text-[16px] gap-[24px] font-[400] text-[#fff]/80 lg:flex flex flex-row items-center">
+      <ul className="w-full lg:w-fit flex items-center justify-around lg:justify-center text-[16px] gap-[24px] font-[400] text-[#fff]/80 lg:flex flex flex-row items-center">
         {headerItemArray.map((item, index) => {
           let isSelected = false
           if(item.jumpLink && item.isCurrentSite) {
