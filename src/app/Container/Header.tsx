@@ -184,10 +184,12 @@ const Header = ({ lang }: ConLangParams) => {
   };
 
   return (
-    <header className="relative h-20 flex items-center justify-center relative z-[1]">
-      <Link href={'/'}>
-        <Logo className="absolute left-0 top-1/2 translate-y-[-50%] h-10 w-auto cursor-pointer" />
-      </Link>
+    <header className="relative h-20 flex flex-col lg:flex-row items-center justify-center relative z-[1]">
+      <div className="lg:absolute left-[20px] top-1/2 translate-y-[-50%] h-10 w-full lg:w-auto cursor-pointer mt-[30px] lg:mt-0">
+        <Link href={'/'}>
+          <Logo className="h-10 w-auto" />
+        </Link>
+      </div>
       <ul className="w-fit flex items-center justify-center text-[16px] gap-[24px] font-[400] text-[#fff]/80 lg:flex flex flex-row items-center">
         {headerItemArray.map((item, index) => {
           let isSelected = false
