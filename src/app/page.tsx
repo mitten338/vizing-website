@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import Slider from "react-slick";
 import { clsx } from "clsx";
 import styles from "./home.module.css";
 import Card from "@/app/component/Card";
@@ -30,24 +31,46 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { externalURLs, openExternalURLs } from "@/utils/constant";
 import { Application } from "@splinetool/runtime";
+import { chainList, ecosystemList } from "./data";
+// assets
+import TheoremToRevolutionImage1 from '@/assets/images/homepage/theorem-to-revolution-image1.png'
+import TheoremToRevolutionImage2 from '@/assets/images/homepage/theorem-to-revolution-image2.png'
+import TheoremToRevolutionImage3 from '@/assets/images/homepage/theorem-to-revolution-image3.png'
+import ImageFeatureSectionBg from '@/assets/images/homepage/feature-section-bg.png'
+import SvgHaloBgPattern from '@/assets/images/homepage/halo-bg-pattern.svg'
+import BeyondOmniChain from '@/assets/images/homepage/beyond-omni-chain.png'
+import ImageSocialMedaiBg from '@/assets/images/homepage/social-media-bg.png'
+import IconImageYoutube from '@/assets/images/homepage/icon/youtube.png'
+import IconImageGithub from '@/assets/images/homepage/icon/github.png'
+import IconImageTelegram from '@/assets/images/homepage/icon/telagram.png'
+import IconImageTwitter from '@/assets/images/homepage/icon/twitter.png'
+import IconImageMedium from '@/assets/images/homepage/icon/medium.png'
+import IconImageVizing from '@/assets/images/homepage/icon/vizing-media-logo.png'
+
+// react-slick styles
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Home() {
   const arr2 = [
     {
       title: "Security",
-      src: sec,
+      src: TheoremToRevolutionImage1,
+      className: 'bg-[rgba(255,255,255,0.04)]',
       context:
         "User transactions are recorded on Ethereum L1 using zk technology, with data availability from Layer 2s verifiable on L1. Strict arbitration ensuring the security of cross-chain messages.",
     },
     {
       title: "Efficiency",
-      src: hl,
+      src: TheoremToRevolutionImage2,
+      className: 'bg-[rgba(255,255,255,0.04)]',
       context:
         "Optimistically transmit messages to minimize performance loss and reserve time blocks to ensure message delivery security, while reducing arbitration costs through zero-knowledge proofs.",
     },
     {
       title: "Decentralization",
-      src: hl2,
+      src: TheoremToRevolutionImage3,
+      className: 'bg-[rgba(255,255,255,0.04)]',
       context:
         "In the Vizing omni-chain environment, users have the ability to choose between Relayer and Validator to transmit messages. Simultaneously, any developer can easily integrate omni-chain communication functionality through our provided development documentation.",
     },
@@ -100,9 +123,35 @@ export default function Home() {
       multilingual prowess.`,
     },
   ];
+  
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    autoplay: true,
+    speed: 5000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    pauseOnHover: false,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+    ]
+  };
 
   const [init, setInit] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
+
+  const handleBuildOnVizingClick = () => {
+    const url = 'https://docs.vizing.com/build-on-vizing/development-environment'
+    window.open(url, '_blank')
+  }
 
   const splineStyle = useMemo(() => {
     return splineLoaded ? "lg:mt-[-400px] mt-[-80px]" : "";
@@ -111,6 +160,7 @@ export default function Home() {
   const whatVizingStyle = useMemo(() => {
     return splineLoaded ? "lg:mt-0" : "lg:mt-[400px] mt-[80px]";
   }, [splineLoaded]);
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -239,28 +289,19 @@ export default function Home() {
             "text-[28px] lg:text-[56px] text-center font-[500] lg:max-w-[698px] mb-4"
           }
         >
-          Welcome to the<br></br>{" "}
-          <span className="text-[#E43B57]">Omni-Chain</span> environment
+          All Chains, One Hub
         </div>
         <div
           className={"text-[16px] font-[400] text-[#fff]/55 max-w-[520px] mb-8"}
         >
-          Vizing, an omni interoperability environment built on advanced zk
-          technology, provides a faster, more affordable, and safer Ethereum
-          ecosystem roaming experience!
+          Vizing is an omni-chain coordination layer built on advanced zk technology, designed to unify the fragmented blockchain landscape. It facilitates efficient cross-chain operations, enhancing both interoperability and liquidity across diverse networks.
         </div>
         <div className={"max-w-[363px] flex gap-1"}>
           <div
             className={styles["bridge-button"]}
-            onClick={() => openExternalURLs("bridge")}
+            onClick={handleBuildOnVizingClick}
           >
-            Bridge to Vizing
-          </div>
-          <div
-            className={styles["explore-button"]}
-            onClick={() => openExternalURLs("explorer")}
-          >
-            Explorer
+            Build on Vizing
           </div>
         </div>
       </div>
@@ -285,21 +326,17 @@ export default function Home() {
           whatVizingStyle
         )}
       >
-        What&apos;s Vizing
+        Theorem to Revolution
       </BoxCenter>
       <BoxCenter className={"mb-28"}>
-        <div className="text-[16px] lg:text-[20px] max-w-[880px] text-[#fff]/60 relative">
+        <div className="text-[16px] lg:text-[20px] font-[400] text-[#fff]/60 relative">
           <div
             className={clsx(
               styles["take-circle"],
               "absolute top-0 left-[88px]"
             )}
           ></div>
-          Vizing is named after mathematician Vadim Georgievich Vizing, who
-          contributed to graph theory with Vizing&apos;s theorem. Graph theory
-          forms the foundation of zero-knowledge proofs. Just as Vizing&apos;s
-          theorem revolutionized graph theory, our vision is to revolutionized
-          the roaming experience within the Ethereum ecosystem.
+          Vizing is named after mathematician Vadim Georgievich Vizing, who contributed to graph theory with Vizing&apos;s theorem. Graph theory forms the foundation of zero-knowledge proofs. Just as Vizing&apos;s theorem revolutionized graph theory, our vision is to enhance the roaming experience within the Ethereum ecosystem.
         </div>
       </BoxCenter>
       <BoxCenter className="mb-[120px]">
@@ -311,6 +348,25 @@ export default function Home() {
           ))}
         </div>
       </BoxCenter>
+      <BoxCenter className="mb-[16px]">
+        <div className="relative h-[432px] w-full border-[1px] border-[rgba(255,255,255,0.12)] bg-[rgba(242,63,93,0.06)] rounded-[24px] overflow-hidden pl-[44px] pt-[72px] pb-[88px]">
+          <SvgHaloBgPattern className="absolute top-[-513px] left-[-590px]"/>
+          <Image src={ImageFeatureSectionBg} alt={""} className="absolute top-[-255px] right-[-77px] w-[782px] h-[778px] hidden lg:block" />
+          <div className="h-full flex flex-col justify-between text-[28px] lg:text-[36px] font-[300] text-[#fff]">
+            <p>Chains connected</p>
+            <p>One-click transfers</p>
+            <p>Zero friction </p>
+            <p>Unified liquidity </p>
+          </div>
+        </div>
+      </BoxCenter>
+      <BoxCenter className="mb-[120px]">
+        <div>
+          <div className="flex">
+            <Image src={BeyondOmniChain} alt={""} className="w-full h-auto" />
+          </div>
+        </div>
+      </BoxCenter>
       <BoxCenter className="flex-center flex-col">
         <div
           className={clsx(
@@ -319,8 +375,8 @@ export default function Home() {
             "lg:bg-cover"
           )}
         >
-          <div className="max-w-[442px] text-[36px] lg:text-[48px] font-[500] text-center">
-            Operational Model of
+          <div className="text-[36px] lg:text-[48px] font-[500] text-center">
+						Implementation Framework of
             <span className="text-[#E43B57]"> Vizing</span>
           </div>
           <div className="text-[16px] lg:text-[18px] text-center text-[#fff]/60">
@@ -329,32 +385,66 @@ export default function Home() {
             to L1 using zk technology for verification and arbitration.
           </div>
         </div>
-        <div className="mt-[-150px] mb-[200px]">
+        <div className="mt-[-150px] mb-[120px]">
           <Image src={etherum} alt=""></Image>
         </div>
       </BoxCenter>
-      <BoxCenter className={"mb-[183px]"}>
+      <BoxCenter className={"mb-[36px] lg:mb-[122px]"}>
         <div
-          className={"font-[400] text-[#fff]/55 text-[20px] text-center mb-5"}
+          className={"font-[500] text-[#fff] text-[24px] lg:text-[48px] text-center mb-[18px] lg:mb-[36px]"}
         >
-          Backed By
+          Vizing & Vizing&apos;s Friends
         </div>
         <div
           className={clsx(
             styles.mask,
-            "overflow-hidden [--mask-w:80px] sm:[--mask-w:200px]"
+            "[--mask-w:80px] sm:[--mask-w:200px]"
           )}
         >
-          <div className={"flex"}>
-            <Roll className={clsx(styles.swiper1)}>
-              {arr3.map(({ url }, index) => (
-                <div key={index}>
-                  <Image src={url} alt="" className="min-w-[2000px] h-[56px]" />
+          <Slider {...sliderSettings}>
+            {chainList.map((chain) => {
+              return (
+                <div key={chain.id}>
+                  <Image className="w-auto h-[60px] lg:h-[125px]" src={chain.img} alt={chain.id}></Image>
                 </div>
-              ))}
-            </Roll>
-          </div>
+              )
+            })}
+          </Slider>
         </div>
+      </BoxCenter>
+      <BoxCenter className={"mb-[36px] lg:mb-[122px]"}>
+        <div
+          className={"font-[500] text-[#fff] text-[24px] lg:text-[48px] text-center mb-[18px] lg:mb-[36px]"}
+        >
+          Ecosystem
+        </div>
+        <div
+          className={clsx(
+            styles.mask,
+            "[--mask-w:80px] sm:[--mask-w:200px]"
+          )}
+        >
+          <Slider {...sliderSettings}>
+            {ecosystemList.map((item) => {
+              return (
+                <div key={item.id}>
+                  <Image className="w-auto h-[60px] lg:h-[125px]" src={item.img} alt={item.id}></Image>
+                </div>
+              )
+            })}
+          </Slider>
+        </div>
+      </BoxCenter>
+      <BoxCenter className={"mb-[96px]"}>
+				<div
+          className={clsx("relative w-full flex flex-col items-center pt-[50vw] lg:pt-[33.26vw] rounded-[24px] border-[1px] border-[rgba(255,255,255,0.12)] overflow-hidden" ,styles["orbiter-vizing-bot"])}
+        >
+						<h1 className={clsx("relative z-10 w-[886px] h-[50px] leading-[50px] lg:h-[110px] lg:leading-[110px] text-[30px] lg:text-[96px] font-[700] text-center lg:mb-[10px]" ,styles["gradient-title"])}>Orbiter Vizing Bot</h1>
+						<p className={clsx("relative z-10 w-full max-w-[800px] text-[12px] lg:text-[20px] font-[400] text-center mb-[10px] lg:mb-[50px]" ,styles["gradient-title"])}>The First Omni chain Play-to-Earn game powered by Vizing. Fully enjoy playing, bridging, and earning. It&apos;s a gateway for all Web3 chains, leading to airdrops.</p>
+            <a href={externalURLs.tgBot} target="_blank">
+              <div className="relative z-10 flex items-center justify-center h-[40px] lg:h-[52px] w-[240px] lg:w-[528px] rounded-[12px] text-[14px] lg:text-[18px] font-[700] text-white bg-[#FF486D] mb-[20px] lg:mb-[80px] hover:cursor-pointer">Play-to-Earn</div>
+            </a>
+				</div>
       </BoxCenter>
       <div className="text-[28px] lg:text-[36px] lg:text-5xl font-[500] text-center mb-8 lg:mb-14">
         Endgame of omni-chain environment
@@ -375,7 +465,7 @@ export default function Home() {
           <div className="text-[28px] lg:text-[36px] mb-6">Vizing Station</div>
           <div className="max-w-[601px] text-[16px] lg:text-[20px] text-[#fff]/60 mb-11">
             Vizing Station is a Type-1 zkEVM operating environment based on zk
-            technology, serving as the access point for full-chain Dapps and the
+            technology, serving as the access point for Multi-Chain Dapps and the
             aggregation entry point for zk-proofs in the Vizing omni-chain
             environment.
           </div>
@@ -423,7 +513,7 @@ export default function Home() {
       <BoxCenter className="flex mb-[125px] flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col lg:max-w-[560px]">
           <div className="text-[28px] lg:text-[36px] font-[500]">
-            How to onboard onto the Vizing omni-chain environment
+            How to onboard Vizing omni-chain environment
           </div>
           <div className="mt-[24px] text-[16px] lg:text-[20px] font-[400] text-[#fff]/60">
             Omni-chain Dapps can swiftly access omni-chain communication
@@ -436,7 +526,7 @@ export default function Home() {
             )}
             onClick={() => openExternalURLs("docs")}
           >
-            Build Docs
+            Docs
           </div>
         </div>
         <div
@@ -486,52 +576,87 @@ contract MyOmniChainDApp is VizingOmni {
           ))}
         </div>
       </BoxCenter> */}
+			<BoxCenter className={"mb-[183px]"}>
+        <div
+          className={"font-[400] text-[#fff]/55 text-[20px] text-center mb-5"}
+        >
+          Backed By
+        </div>
+        <div
+          className={clsx(
+            styles.mask,
+            "overflow-hidden [--mask-w:80px] sm:[--mask-w:200px]"
+          )}
+        >
+          <div className={"flex"}>
+            <Roll className={clsx(styles.swiper1)}>
+              {arr3.map(({ url }, index) => (
+                <div key={index}>
+                  <Image src={url} alt="" className="min-w-[2000px] h-[56px]" />
+                </div>
+              ))}
+            </Roll>
+          </div>
+        </div>
+      </BoxCenter>
       <BoxCenter className="flex-center">
         <div
           className={clsx(
-            styles.concat,
-            "lg:py-[128px] lg:pb-[272px] px-[19px] lg:px-[38px] lg:max-w-[632px] w-[87vw] lg:h-auto lg:mb-[94px] h-[87vw] relative"
+						"relative h-[59.86vw] w-full"
           )}
         >
-          <div className="text-[24px] text-center lg:text-[48px] font-[500] lg:mb-[88px] mt-[16vw] lg:mt-0">
-            Social Media Integration
+					<Image src={ImageSocialMedaiBg} alt={""} className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] h-full w-auto" />
+          <div className="absolute top-[16vw] left-[50%] translate-x-[-50%] text-[20px] text-center lg:text-[48px] font-[500]">
+            Social Media
           </div>
-          <div className="flex items-center lg:relative absolute top-[50%] w-full justify-between lg:translate-y-0 translate-y-[-50%] left-0">
+          <div
+            className="flex items-center justify-between w-[59.86vw] absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]"
+					>
             {[
               {
-                url: discord,
-                style: "p-[2vw] lg:p-4 lg:ml-[-80px] ml-[-4vw]",
-                jumpLink: externalURLs.discord,
+                url: IconImageYoutube,
+                style: "w-[5vw] h-[5vw] absolute left-0 top-[50%] translate-y-[-50%] p-[1.11vw] ml-[-3.19vw]",
+                jumpLink: externalURLs.youtube,
               },
               {
-                url: twitter,
-                style: "p-[3vw] lg:p-6 lg:ml-[48px] mr-[20vw] lg:mr-[296px]",
+                url: IconImageTelegram,
+                style: "w-[5vw] h-[5vw] absolute left-0 top-[50%] translate-y-[-50%] p-[1.11vw] ml-[5.14vw]",
+                jumpLink: externalURLs.telegram,
+              },
+              {
+                url: IconImageTwitter,
+                style: "w-[6vw] h-[6vw] absolute left-0 top-[50%] translate-y-[-50%] p-[1.67vw] ml-[13.47vw]",
                 jumpLink: externalURLs.twitter,
               },
               {
-                url: Frame,
-                style: "p-[3vw] lg:p-6 lg:mr-[48px]",
+                url: IconImageGithub,
+                style: "w-[6vw] h-[6vw] absolute right-0 top-[50%] translate-y-[-50%] p-[1.67vw] mr-[13.47vw]",
                 jumpLink: externalURLs.github,
               },
               {
-                url: Medium,
-                style: "p-[2vw] lg:p-4 mr-[-4vw] lg:mr-0",
+                url: IconImageMedium,
+                style: "w-[5vw] h-[5vw] absolute right-0 top-[50%] translate-y-[-50%] p-[1.11vw] mr-[5.14vw]",
                 jumpLink: externalURLs.medium,
               },
-            ].map(({ style, url: Url, jumpLink }, index) => {
+              {
+                url: IconImageVizing,
+                style: "w-[5vw] h-[5vw] absolute right-0 top-[50%] translate-y-[-50%] p-[1.11vw] mr-[-3.19vw]",
+                jumpLink: externalURLs.tgBot,
+              },
+            ].map(({ style, url: imgUrl, jumpLink }, index) => {
               return (
                 <div
                   key={index}
                   className={clsx(
                     style,
                     styles["concat-logo"],
-                    "cursor-pointer"
+                    "flex items-center justify-center cursor-pointer"
                   )}
                   onClick={() => {
                     jumpLink && window.open(jumpLink);
                   }}
                 >
-                  <Url></Url>
+                  <Image src={imgUrl} alt={""} className={"w-full h-auto"} />
                 </div>
               );
             })}
@@ -540,4 +665,4 @@ contract MyOmniChainDApp is VizingOmni {
       </BoxCenter>
     </div>
   );
-}
+};

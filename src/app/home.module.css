@@ -132,3 +132,17 @@
   backdrop-filter: blur(8px);
   background: linear-gradient(180.00deg, rgba(242, 63, 93, 0.3), rgba(4, 1, 2, 0.2) 120.475%);
 }
+
+.gradient-title {
+  background: linear-gradient(to right, rgb(255, 5, 72), rgb(240, 253, 255), rgb(135, 241, 255), rgb(255, 153, 153));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.orbiter-vizing-bot {
+  background-image: url("../../assets/images/homepage/orbiter-vizing-bot-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
