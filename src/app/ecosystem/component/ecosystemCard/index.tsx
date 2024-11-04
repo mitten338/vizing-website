@@ -39,8 +39,8 @@ export const EcosystemCard: FC<EcosystemCardProps> = ({ ...props }) => {
             {cardInfo.tagName}
           </span>
           <Image src={cardInfo.banner} alt={cardInfo.name}></Image>
-          <div className="logo absolute left-[16px] bottom-0 translate-y-2/4 w-[68px] h-[68px] flex justify-center content-center bg-black rounded-full">
-            <Image src={cardInfo.logo} alt={cardInfo.name}></Image>
+          <div className="logo absolute left-[16px] bottom-0 translate-y-2/4 w-[4.5rem] h-[4.5rem] flex justify-center items-center content-center bg-black rounded-full">
+            <Image className="h-16 w-16" src={cardInfo.logo} alt={cardInfo.name}></Image>
           </div>
         </div>
         <div className="links flex flex-row justify-end pr-[13px]">
