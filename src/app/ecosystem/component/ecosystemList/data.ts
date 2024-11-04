@@ -66,6 +66,207 @@ type EcosystemList = {
 };
 
 export const ecosystemList:EcosystemList = {
+  network: {
+    categoryName: 'Network',
+    list: [
+      {
+        name: 'Ethereum Mainnet',
+        introduction: 'Ethereum is a technology built for the public good.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://ethereum.foundation/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/ethereum'
+          }
+        ]
+      },
+      {
+        name: 'Arbitrum',
+        introduction: 'Arbitrum is a suite of Ethereum scaling solutions that make it easy to build and use decentralized applications. ',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://arbitrum.foundation/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/arbitrum'
+          }
+        ]
+      },
+      {
+        name: 'Optimism',
+        introduction: 'OP Mainnet is an EVM equivalent Layer 2 blockchain connected to Ethereum.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://optimism.io/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/Optimism'
+          }
+        ]
+      },
+      {
+        name: 'Base',
+        introduction: 'Bringing the world onchain to create a global economy that increases innovation, creativity, and freedom.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://www.base.org/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/base'
+          }
+        ]
+      },
+      {
+        name: 'Solana',
+        introduction: 'Solana is a blockchain built for mass adoption ◎ Fast, composable, green, and globally distributed.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://solana.com/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/solana'
+          }
+        ]
+      },
+      {
+        name: 'Ton',
+        introduction: 'TON is putting crypto in every pocket. By building the Web3 ecosystem in Telegram, TON is making digital ownership easy for billions. ',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://ton.org/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/ton_blockchain'
+          }
+        ]
+      },
+      {
+        name: 'Polygon zkEVM',
+        introduction: 'Polygon zkEVM is to Ethereum a Layer 2 network and a scalability solution utilizing zero-knowledge technology to provide validation and fast finality of off-chain transactions.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://polygon.technology/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/0xPolygon'
+          }
+        ]
+      },
+      {
+        name: 'BNB Chain',
+        introduction: 'BNB Chain is a leading blockchain ecosystem designed to support the growing demands of the decentralized web (Web3). ',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://www.bnbchain.org/en',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/BNBCHAIN'
+          }
+        ]
+      },
+      {
+        name: 'Scroll',
+        introduction: 'The leading zero-knowledge rollup.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://scroll.io/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/Scroll_ZKP'
+          }
+        ]
+      },
+      {
+        name: 'zkSync Era',
+        introduction: 'ZKsync Era is a Layer 2 ZK rollup, a trustless protocol that uses cryptographic validity proofs to provide scalable and low-cost transactions on Ethereum.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://zksync.io/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/zksync'
+          }
+        ]
+      },
+      {
+        name: 'Linea',
+        introduction: 'Linea is the home network for the world. We are the Ethereum L2 empowering the world to live onchain.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://linea.build/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/LineaBuild'
+          }
+        ]
+      },
+      {
+        name: 'Blast',
+        introduction: 'Blast is the only Ethereum L2 with native yield for ETH and stablecoins.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://blast.io/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/blast'
+          }
+        ]
+      },
+      {
+        name: 'BOB',
+        introduction: 'The Hybrid L2 | Connecting Bitcoin security with EVM liquidity',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://www.gobob.xyz/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/build_on_bob'
+          }
+        ]
+      },
+      {
+        name: 'Taiko',
+        introduction: 'Taiko is a highly configurable, fully open source, permissionless (based), Ethereum-equivalent rollup.',
+        tagName: 'Network',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://taiko.xyz/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/taikoxyz'
+          }
+        ]
+      },
+    ]
+  },
   bridge: {
     categoryName: 'Bridge',
     list: [
@@ -242,6 +443,20 @@ export const ecosystemList:EcosystemList = {
             link: 'https://x.com/ConftApp'
           }
         ]
+      },
+      {
+        name: '_degeneratives',
+        introduction: 'Where emotions become art and currency ▪︎ degeneratives ecosystem',
+        tagName: 'NFT',
+        logo: logoCoNFT,
+        banner: bannerCoNFT,
+        homepage: 'https://www.degeneratives.org/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/_degeneratives'
+          }
+        ]
       }
     ]
   },
@@ -352,5 +567,24 @@ export const ecosystemList:EcosystemList = {
         ]
       }
     ]
-  }
+  },
+  did: {
+    categoryName: 'DID',
+    list: [
+      {
+        name: 'Star Protocol',
+        introduction: 'Building omnichain DID protocol & ANS',
+        tagName: 'DID',
+        logo: logoAlchemy,
+        banner: bannerAlchemy,
+        homepage: 'https://star.co/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/StarProtocol_HQ'
+          }
+        ]
+      },
+    ]
+  },
 }
