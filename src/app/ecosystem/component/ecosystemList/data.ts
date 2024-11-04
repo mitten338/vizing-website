@@ -492,6 +492,25 @@ export const ecosystemList:EcosystemList = {
       }
     ]
   },
+  did: {
+    categoryName: 'DID',
+    list: [
+      {
+        name: 'Star Protocol',
+        introduction: 'Building omnichain DID protocol & ANS',
+        tagName: 'DID',
+        logo: logoStarProtocol,
+        banner: bannerStarProtocol,
+        homepage: 'https://star.co/',
+        links: [
+          {
+            linkLogo: linkX,
+            link: 'https://x.com/StarProtocol_HQ'
+          }
+        ]
+      },
+    ]
+  },
   wallet: {
     categoryName: 'Wallet',
     list: [
@@ -598,25 +617,6 @@ export const ecosystemList:EcosystemList = {
           }
         ]
       }
-    ]
-  },
-  did: {
-    categoryName: 'DID',
-    list: [
-      {
-        name: 'Star Protocol',
-        introduction: 'Building omnichain DID protocol & ANS',
-        tagName: 'DID',
-        logo: logoStarProtocol,
-        banner: bannerStarProtocol,
-        homepage: 'https://star.co/',
-        links: [
-          {
-            linkLogo: linkX,
-            link: 'https://x.com/StarProtocol_HQ'
-          }
-        ]
-      },
     ]
   },
 }
