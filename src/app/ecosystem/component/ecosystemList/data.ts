@@ -17,6 +17,22 @@ import logoOxkWallet from 'images/ecosystem/logo_okx_wallet.png';
 import logoXenoBunny from 'images/ecosystem/logo_xeno_bunny.png';
 import logoCoNFT from 'images/ecosystem/logo_conft.png';
 import logoTermiX from 'images/ecosystem/logo_termix.png';
+import logoEthereum from 'images/ecosystem/logo_ethereum.png';
+import logoArbitrum from 'images/ecosystem/logo_arbitrum.png';
+import logoOptimism from 'images/ecosystem/logo_optimism.png';
+import logoBase from 'images/ecosystem/logo_base.png';
+import logoSolana from 'images/ecosystem/logo_solana.png';
+import logoTon from 'images/ecosystem/logo_ton.png';
+import logoPolygon from 'images/ecosystem/logo_polygon.png';
+import logoBNB from 'images/ecosystem/logo_bnb.png';
+import logoScroll from 'images/ecosystem/logo_scroll.png';
+import logoZksync from 'images/ecosystem/logo_zksync.png';
+import logoLinea from 'images/ecosystem/logo_linea.png';
+import logoBlast from 'images/ecosystem/logo_blast.png';
+import logoBOB from 'images/ecosystem/logo_bob.png';
+import logoTaiko from 'images/ecosystem/logo_taiko.png';
+import logoDegeneratives from 'images/ecosystem/logo_degeneratives.png';
+import logoStarProtocol from 'images/ecosystem/logo_star_protocol.png';
 // banner assets
 import bannerOrbiter from 'images/ecosystem/banner_orbiter.png';
 import bannerLikwid from 'images/ecosystem/banner_likwid.png';
@@ -36,6 +52,22 @@ import bannerOxkWallet from 'images/ecosystem/banner_okx_wallet.png';
 import bannerXenoBunny from 'images/ecosystem/banner_xeno_bunny.png';
 import bannerCoNFT from 'images/ecosystem/banner_conft.png';
 import bannerTermiX from 'images/ecosystem/banner_termix.png';
+import bannerDegeneratives from 'images/ecosystem/banner_degeneratives.png';
+import bannerStarProtocol from 'images/ecosystem/banner_star_protocol.png';
+import bannerArbitrum from 'images/ecosystem/banner_arbitrum.png';
+import bannerEthereum from 'images/ecosystem/banner_ethereum.png';
+import bannerOptimism from 'images/ecosystem/banner_optimism.png';
+import bannerBase from 'images/ecosystem/banner_base.png';
+import bannerSolana from 'images/ecosystem/banner_solana.png';
+import bannerTon from 'images/ecosystem/banner_ton.png';
+import bannerPolygon from 'images/ecosystem/banner_polygon.png';
+import bannerBNB from 'images/ecosystem/banner_bnb.png';
+import bannerScroll from 'images/ecosystem/banner_scroll.png';
+import bannerZkSync from 'images/ecosystem/banner_zksync.png';
+import bannerLinea from 'images/ecosystem/banner_linea.png';
+import bannerBlast from 'images/ecosystem/banner_blast.png';
+import bannerBOB from 'images/ecosystem/banner_bob.png';
+import bannerTaiko from 'images/ecosystem/banner_taiko.png';
 // social link logo assets
 import linkX from "images/headerX.svg";
 
@@ -73,8 +105,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Ethereum Mainnet',
         introduction: 'Ethereum is a technology built for the public good.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoEthereum,
+        banner: bannerEthereum,
         homepage: 'https://ethereum.foundation/',
         links: [
           {
@@ -87,8 +119,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Arbitrum',
         introduction: 'Arbitrum is a suite of Ethereum scaling solutions that make it easy to build and use decentralized applications. ',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoArbitrum,
+        banner: bannerArbitrum,
         homepage: 'https://arbitrum.foundation/',
         links: [
           {
@@ -101,8 +133,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Optimism',
         introduction: 'OP Mainnet is an EVM equivalent Layer 2 blockchain connected to Ethereum.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoOptimism,
+        banner: bannerOptimism,
         homepage: 'https://optimism.io/',
         links: [
           {
@@ -115,8 +147,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Base',
         introduction: 'Bringing the world onchain to create a global economy that increases innovation, creativity, and freedom.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoBase,
+        banner: bannerBase,
         homepage: 'https://www.base.org/',
         links: [
           {
@@ -129,8 +161,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Solana',
         introduction: 'Solana is a blockchain built for mass adoption ◎ Fast, composable, green, and globally distributed.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoSolana,
+        banner: bannerSolana,
         homepage: 'https://solana.com/',
         links: [
           {
@@ -143,8 +175,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Ton',
         introduction: 'TON is putting crypto in every pocket. By building the Web3 ecosystem in Telegram, TON is making digital ownership easy for billions. ',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoTon,
+        banner: bannerTon,
         homepage: 'https://ton.org/',
         links: [
           {
@@ -157,8 +189,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Polygon zkEVM',
         introduction: 'Polygon zkEVM is to Ethereum a Layer 2 network and a scalability solution utilizing zero-knowledge technology to provide validation and fast finality of off-chain transactions.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoPolygon,
+        banner: bannerPolygon,
         homepage: 'https://polygon.technology/',
         links: [
           {
@@ -171,8 +203,8 @@ export const ecosystemList:EcosystemList = {
         name: 'BNB Chain',
         introduction: 'BNB Chain is a leading blockchain ecosystem designed to support the growing demands of the decentralized web (Web3). ',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoBNB,
+        banner: bannerBNB,
         homepage: 'https://www.bnbchain.org/en',
         links: [
           {
@@ -185,8 +217,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Scroll',
         introduction: 'The leading zero-knowledge rollup.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoScroll,
+        banner: bannerScroll,
         homepage: 'https://scroll.io/',
         links: [
           {
@@ -199,8 +231,8 @@ export const ecosystemList:EcosystemList = {
         name: 'zkSync Era',
         introduction: 'ZKsync Era is a Layer 2 ZK rollup, a trustless protocol that uses cryptographic validity proofs to provide scalable and low-cost transactions on Ethereum.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoZksync,
+        banner: bannerZkSync,
         homepage: 'https://zksync.io/',
         links: [
           {
@@ -213,8 +245,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Linea',
         introduction: 'Linea is the home network for the world. We are the Ethereum L2 empowering the world to live onchain.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoLinea,
+        banner: bannerLinea,
         homepage: 'https://linea.build/',
         links: [
           {
@@ -227,8 +259,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Blast',
         introduction: 'Blast is the only Ethereum L2 with native yield for ETH and stablecoins.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoBlast,
+        banner: bannerBlast,
         homepage: 'https://blast.io/',
         links: [
           {
@@ -241,8 +273,8 @@ export const ecosystemList:EcosystemList = {
         name: 'BOB',
         introduction: 'The Hybrid L2 | Connecting Bitcoin security with EVM liquidity',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoBOB,
+        banner: bannerBOB,
         homepage: 'https://www.gobob.xyz/',
         links: [
           {
@@ -255,8 +287,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Taiko',
         introduction: 'Taiko is a highly configurable, fully open source, permissionless (based), Ethereum-equivalent rollup.',
         tagName: 'Network',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoTaiko,
+        banner: bannerTaiko,
         homepage: 'https://taiko.xyz/',
         links: [
           {
@@ -448,8 +480,8 @@ export const ecosystemList:EcosystemList = {
         name: '_degeneratives',
         introduction: 'Where emotions become art and currency ▪︎ degeneratives ecosystem',
         tagName: 'NFT',
-        logo: logoCoNFT,
-        banner: bannerCoNFT,
+        logo: logoDegeneratives,
+        banner: bannerDegeneratives,
         homepage: 'https://www.degeneratives.org/',
         links: [
           {
@@ -575,8 +607,8 @@ export const ecosystemList:EcosystemList = {
         name: 'Star Protocol',
         introduction: 'Building omnichain DID protocol & ANS',
         tagName: 'DID',
-        logo: logoAlchemy,
-        banner: bannerAlchemy,
+        logo: logoStarProtocol,
+        banner: bannerStarProtocol,
         homepage: 'https://star.co/',
         links: [
           {
